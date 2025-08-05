@@ -27,8 +27,6 @@ body {
 /* ============================== */
 .formulario {
     background-color: rgba(255, 255, 255, 0.65);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
     padding: 40px 30px;
     border-radius: 15px;
     max-width: 400px;

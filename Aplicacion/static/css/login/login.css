@@ -37,8 +37,6 @@ img {
 /* ============================== */
 .login-box {
     background-color: rgba(255, 255, 255, 0.65);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
     width: 340px;
     padding: 25px 30px;
     border-radius: 12px;
