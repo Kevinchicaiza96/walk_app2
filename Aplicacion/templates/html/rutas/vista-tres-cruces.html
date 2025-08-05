@@ -1,0 +1,58 @@
+{% extends 'html/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/vista-tres-cruces.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<!-- ========= CONTENIDO ========= -->
+
+  <main class="container">
+    <!-- Tarjetas -->
+    <section class="cards" aria-label="Destacados de la ruta">
+      <article class="card">
+        <img src="{% static '/images/el morro/colombia (7).JPG' %}" alt="Paisaje de El Morro" />
+        <div class="card-content">
+          <h3>Vista Panorámica</h3>
+          <p>Disfruta de una vista espectacular.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <img src="{% static '/images/torre24/OIP.jpeg' %}" alt="Sendero en El Morro" />
+        <div class="card-content">
+          <h3>Senderos Naturales</h3>
+          <p>Explora los senderos rodeados de naturaleza y tranquilidad.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <img src="{% static '/images/torre24/parque-caldas copy.jpg' %}" alt="Atardecer en El Morro" />
+        <div class="card-content">
+          <h3>Atardeceres Inolvidables</h3>
+          <p>Vive la magia de un atardecer desde uno de los puntos más altos de Popayán.</p>
+        </div>
+      </article>
+    </section>
+
+    <!-- Mapa -->
+    <section class="map-container">
+      <h2>Mapa de Popayán</h2>
+      <div class="map-wrapper">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15932.123456789!2d-76.6100000!3d2.4400000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3b7465c1234567%3A0x123456789abcdef!2sPopay%C3%A1n%2C%20Cauca!5e0!3m2!1ses!2sco!4v1234567890123"
+          loading="lazy"
+          allowfullscreen
+          referrerpolicy="no-referrer-when-downgrade"
+          aria-label="Mapa interactivo de Popayán">
+        </iframe>
+      </div>
+      <div class="text-center">
+        <a href="#" class="btn-success view-route-button" aria-label="Ver ruta en el mapa">Ver Ruta</a>
+      </div>
+    </section>
+  </main>
+
+{% endblock %}

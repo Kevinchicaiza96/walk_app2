@@ -1,0 +1,189 @@
+{% extends 'html/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/ranking.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="ranking-stats-wrapper">
+
+  <!-- === RANKING MENSUAL === -->
+  <section class="ranking-section animate__animated animate__fadeInUp" aria-labelledby="ranking-title">
+    <div class="ranking-box">
+      <h2 id="ranking-title" class="section-title">🏆 Ranking Mensual</h2>
+      <ul class="ranking-list" role="list">
+        <li class="ranking-item gold">
+          <span><i class="fas fa-crown"></i> 1. Melquicedec Mercado</span><span><strong>1500 pts</strong></span>
+        </li>
+        <li class="ranking-item silver">
+          <span>🥈 2. Ronal Camilo Benavidez</span><span><strong>1400 pts</strong></span>
+        </li>
+        <li class="ranking-item bronze">
+          <span>🥉 3. Cristian Jimenez</span><span><strong>1300 pts</strong></span>
+        </li>
+        <li class="ranking-item">
+          <span>4. Julian Fernandez</span><span>1200 pts</span>
+        </li>
+        <li class="ranking-item" aria-current="true">
+          <span>5. Kevin Chicaiza</span><span>1100 pts</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- === ESTADÍSTICAS INTERACTIVAS === -->
+  <section class="stats-section animate__animated animate__fadeInUp" aria-labelledby="stats-title">
+    <h2 id="stats-title" class="section-title">📈 Estadísticas Interactivas</h2>
+
+    <div class="stats-grid">
+      <button type="button" class="stat-card interactive active-card" onclick="updateChart('Octubre', this)" aria-pressed="true">
+        <div class="footprint-deco" aria-hidden="true">
+          <i class="fas fa-shoe-prints"></i>
+        </div>
+        <h3>📅 Octubre</h3>
+        <p><strong>Puntos:</strong> 195</p>
+        <p><strong>Distancia:</strong> 44 km</p>
+        <p><strong>Días activos:</strong> 17</p>
+      </button>
+
+      <button type="button" class="stat-card interactive" onclick="updateChart('Septiembre', this)" aria-pressed="false">
+        <div class="footprint-deco" aria-hidden="true">
+          <i class="fas fa-shoe-prints"></i>
+        </div>
+        <h3>📅 Septiembre</h3>
+        <p><strong>Puntos:</strong> 140</p>
+        <p><strong>Distancia:</strong> 35 km</p>
+        <p><strong>Días activos:</strong> 13</p>
+      </button>
+
+      <button type="button" class="stat-card interactive" onclick="updateChart('Agosto', this)" aria-pressed="false">
+        <div class="footprint-deco" aria-hidden="true">
+          <i class="fas fa-shoe-prints"></i>
+        </div>
+        <h3>📅 Agosto</h3>
+        <p><strong>Puntos:</strong> 90</p>
+        <p><strong>Distancia:</strong> 20 km</p>
+        <p><strong>Días activos:</strong> 7</p>
+      </button>
+
+      <button type="button" class="stat-card interactive" onclick="updateChart('Julio', this)" aria-pressed="false">
+        <div class="footprint-deco" aria-hidden="true">
+          <i class="fas fa-shoe-prints"></i>
+        </div>
+        <h3>📅 Julio</h3>
+        <p><strong>Puntos:</strong> 200</p>
+        <p><strong>Distancia:</strong> 50 km</p>
+        <p><strong>Días activos:</strong> 20</p>
+      </button>
+    </div>
+
+    <div class="chart-container">
+      <canvas id="statsChart" aria-label="Gráfico de estadísticas del mes" role="img"></canvas>
+      <p class="visually-hidden">El gráfico muestra puntos, distancia y días activos del mes seleccionado.</p>
+    </div>
+  </section>
+
+  <!-- === CAMINATAS RECIENTES === -->
+  <section class="recent-hikes-section animate__animated animate__fadeInUp" style="animation-delay: 0.4s;" aria-labelledby="recent-hikes-title">
+    <div class="hikes-box">
+      <h2 id="recent-hikes-title" class="section-title">🚶 Caminatas Recientes</h2>
+      <div class="hikes-grid">
+
+        <article class="hike-card" aria-label="Ruta Páramo de Puracé">
+          <img src="{% static 'images/imagenes/purace.jpg' %}" alt="Vista neblinosa desde el Páramo de Puracé en Coconuco" class="hike-image">
+          <div class="hike-info">
+            <h5 class="hike-title">Páramo de Puracé</h5>
+            <p>📍 Coconuco | 🗓️ 27 Julio 2025</p>
+            <p>10 km | 3h 15m</p>
+            <span class="hike-tag">❄️ Clima frío | 🌿 Alta montaña</span>
+          </div>
+        </article>
+
+        <article class="hike-card" aria-label="Ruta Cascada de Mi Bohío">
+          <img src="{% static 'images/imagenes/tunurco.jpg' %}" alt="Cascada rodeada de vegetación densa en Timbío" class="hike-image">
+          <div class="hike-info">
+            <h5 class="hike-title">Cascada de Mi Bohío</h5>
+            <p>📍 Timbío | 🗓️ 22 Julio 2025</p>
+            <p>4.8 km | 1h 30m</p>
+            <span class="hike-tag">💧 Ruta con cascada | 🌸 Nivel medio</span>
+          </div>
+        </article>
+
+        <article class="hike-card" aria-label="Ruta Cerro de La Tetilla">
+          <img src="{% static 'images/imagenes/Tetilla.jpg' %}" alt="Vista desde la cima del Cerro de La Tetilla en Popayán" class="hike-image">
+          <div class="hike-info">
+            <h5 class="hike-title">Cerro de La Tetilla</h5>
+            <p>📍 Popayán | 🗓️ 18 Julio 2025</p>
+            <p>7.2 km | 2h</p>
+            <span class="hike-tag">⛰️ Vistas panorámicas | 💪 Subida moderada</span>
+          </div>
+        </article>
+
+        <article class="hike-card" aria-label="Ruta Cascada La Torre">
+          <img src="{% static 'images/imagenes/torre.webp' %}" alt="Laguna en la base de la Cascada La Torre rodeada de vegetación" class="hike-image">
+          <div class="hike-info">
+            <h5 class="hike-title">Cascada La Torre</h5>
+            <p>📍 Cajete | 🗓️ 14 Julio 2025</p>
+            <p>6.3 km | 1h 50m</p>
+            <span class="hike-tag">🏕️ Zona de descanso | 🦋 Biodiversidad</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const chartData = {
+    'Octubre': [195, 44, 17],
+    'Septiembre': [140, 35, 13],
+    'Agosto': [90, 20, 7],
+    'Julio': [200, 50, 20]
+  };
+
+  const ctx = document.getElementById('statsChart').getContext('2d');
+  let statsChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Puntos', 'Distancia (km)', 'Días activos'],
+      datasets: [{
+        label: 'Datos del mes',
+        data: chartData['Octubre'],
+        backgroundColor: ['#3498db', '#2ecc71', '#f39c12']
+      }]
+    },
+    options: {
+      responsive: true,
+      animation: {
+        duration: 700,
+        easing: 'easeOutBounce'
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 200
+        }
+      }
+    }
+  });
+
+  function updateChart(month, element) {
+    statsChart.data.datasets[0].data = chartData[month];
+    statsChart.update();
+
+    document.querySelectorAll('.stat-card').forEach(card => {
+      card.classList.remove('active-card');
+      card.setAttribute('aria-pressed', 'false');
+    });
+
+    element.classList.add('active-card');
+    element.setAttribute('aria-pressed', 'true');
+  }
+</script>
+{% endblock %}

@@ -1,0 +1,359 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@100;200;300;400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+body {
+    height: 100vh;
+    background-image: url("/static/images/fotos/ilustracionsenderismo.webp");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.container {
+    width: 500px;
+    background: linear-gradient(#2D5E52, #8d6e63);
+    height: 80%;
+    padding: 20px;
+    position: relative;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+header {
+    background-color: #2D5E52;
+    color: #fff;
+    text-align: center;
+    font-size: 12px;
+    padding: 10px;
+    border-radius: 50px;
+    box-shadow: 3px 3px 5px #1b4b42;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.inicio {
+    text-align: center;
+    padding-top: 80px;
+    color: #fff;
+    font-size: 20px;
+}
+
+.inicio input {
+    display: block;
+    width: 200px;
+    margin: 10px auto;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 50px;
+    border: 0;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.btn {
+    background-color: #2D5E52;
+    color: #fff;
+    border: 0;
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 50px;
+    margin-top: 3px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 16px;
+    transition: .3s;
+}
+
+.btn:hover {
+    background-color: #1b4b42;
+}
+
+.btn-regresar {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 10px 20px;
+    background-color: #8d6e63;
+    color: #fff;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: .3s;
+}
+
+.btn-regresar:hover {
+    background-color: #5d4239;
+}
+
+.puntaje, .jugador {
+    display: flex;
+    align-items: center;
+}
+
+.puntaje img, .jugador img {
+    width: 40px;
+    background-color: #2D5E52;
+    border-radius: 50%;
+    border: 2px solid #ffeb3b;
+    z-index: 2;
+}
+
+.puntaje .puntos {
+    background-color: #2D5E52;
+    width: 90px;
+    padding: 5px;
+    border-radius: 0 30px 30px 0;
+    margin-left: -5px;
+    z-index: 0;
+    font-size: 16px;
+}
+
+.jugador .nombre {
+    background-color: #2D5E52;
+    width: 90px;
+    padding: 5px;
+    border-radius: 30px 0px 0px 30px;
+    margin-right: -5px;
+    font-size: 16px;
+}
+
+/* Avatar específico */
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-left: 8px;
+}
+
+/* Accesibilidad */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* Responsivo */
+@media (max-width: 540px) {
+    .container {
+        width: 100%;
+        height: auto;
+        border-radius: 20px;
+        padding: 15px;
+    }
+
+    .inicio {
+        padding-top: 60px;
+        font-size: 18px;
+    }
+
+    .inicio input {
+        width: 90%;
+    }
+
+    header {
+        flex-direction: column;
+        font-size: 14px;
+        gap: 10px;
+    }
+
+    .btn,
+    .btn-regresar {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .puntaje .puntos,
+    .jugador .nombre {
+        width: auto;
+        padding: 4px 10px;
+        font-size: 14px;
+    }
+
+    .avatar {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+
+/* SECCIÓN MENU DEL JUEGO */
+.menu {
+    margin-top: 20px;
+    color: #fff;
+    text-align: center;
+}
+
+.categorias {
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: 170px 170px;
+    gap: 40px;
+    justify-content: space-evenly;
+}
+
+.categoria {
+    background-color: #2D5E52;
+    width: 170px;
+    height: 90px;
+    border-radius: 50px;
+    color: #fff;
+    position: relative;
+    display: flex;
+    align-items: end;
+    padding: 20px;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform .3s, box-shadow .3s;
+}
+
+.categoria .foto-categoria {
+    width: 80px;
+    position: absolute;
+    left: 50%;
+    top: -35px;
+    transform: translateX(-50%);
+    transition: .3s;
+}
+
+.categoria:hover {
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+    transform: translateY(-5px);
+}
+
+.categoria:hover .foto-categoria {
+    scale: 1.2;
+}
+
+/* PANTALLA DE PREGUNTAS */
+.juego {
+    color: #fff;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.juego .pregunta {
+    margin: 10px 0 30px 0;
+    font-size: 20px;
+}
+
+.juego .opcion {
+    display: block;
+    width: 90%;
+    margin: auto;
+    border: 0;
+    font-size: 16px;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 20px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.correcta {
+    background-color: #66bb6a;
+}
+
+.incorrecta {
+    background-color: #d32f2f;
+}
+
+.no-events {
+    pointer-events: none;
+}
+
+.efecto {
+    animation: 1s zoom;
+}
+
+@keyframes zoom {
+    0% {
+        transform: scale(1);
+        color: #fff;
+        font-weight: bold;
+    }
+    40% {
+        transform: scale(1.3);
+        color: #ffeb3b;
+    }
+    60% {
+        transform: scale(1.3);
+        color: #ffeb3b;
+    }
+    100% {
+        transform: scale(1);
+        color: #fff;
+        font-weight: normal;
+    }
+}
+
+.desabilitada {
+    filter: grayscale(.9) opacity(.7);
+}
+
+/* SECCIÓN FINAL */
+.final {
+    margin-top: 30px;
+    text-align: center;
+    color: #fff;
+}
+
+.final .medalla {
+    position: relative;
+    width: 100px;
+    margin: 20px auto;
+}
+
+.final .medalla .nombre {
+    position: absolute;
+    top: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.final img {
+    display: block;
+    width: 100px;
+    margin: auto;
+}
+
+.final .puntaje-final {
+    font-size: 50px;
+    color: #fff;
+    margin: 10px 0;
+    display: inline-block;
+}
+
+/* BOTÓN REGRESAR */
+.btn-regresar {
+    background-color: #a94442;
+    padding: 10px 20px;
+    display: inline-block;
+    text-align: center;
+    margin-top: 40px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-regresar:hover {
+    background-color: #843534;
+}

@@ -1,0 +1,209 @@
+/* ============================== */
+/* FONDO Y FUENTE BASE            */
+/* ============================== */
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: url(../../images/imagenes/shutterstock_208356901_.jpg) no-repeat center center fixed;
+    background-size: cover;
+    animation: fadeInUp 0.8s ease;
+}
+
+/* ============================== */
+/* LOGO                           */
+/* ============================== */
+img {
+    height: 90px;
+    width: 90px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================== */
+/* CONTENEDOR GENERAL             */
+/* ============================== */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+}
+
+/* ============================== */
+/* CAJA DE LOGIN - GLASSMORPHISM */
+/* ============================== */
+.login-box {
+    background-color: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    width: 340px;
+    padding: 25px 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 0.8s ease;
+}
+
+/* ============================== */
+/* ENCABEZADO                     */
+/* ============================== */
+.login-header h1 {
+    text-align: center;
+    color: #27ae60;
+    margin: 15px 0 25px;
+    font-size: 26px;
+}
+
+/* ============================== */
+/* FORMULARIO                     */
+/* ============================== */
+.login-form .form-group {
+    margin-bottom: 15px;
+}
+
+.login-form label {
+    display: block;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: rgba(241, 248, 255, 0.85);
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.login-form input:focus {
+    border-color: #27ae60;
+    outline: none;
+    box-shadow: 0 0 6px rgba(39, 174, 96, 0.25);
+}
+
+/* ============================== */
+/* BOTÓN DE ENVÍO                */
+/* ============================== */
+.btn-submit {
+    background-color: #2ecc71;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-submit:hover {
+    background-color: #27ae60;
+    transform: translateY(-1px);
+}
+
+/* ============================== */
+/* ENLACE: ¿Olvidaste tu clave?  */
+/* ============================== */
+.forgot-password {
+    text-align: right;
+    margin-top: 10px;
+}
+
+.forgot-password a {
+    color: #27ae60;
+    font-size: 13px;
+    text-decoration: none;
+    transition: text-decoration 0.2s;
+}
+
+.forgot-password a:hover {
+    text-decoration: underline;
+}
+
+/* ============================== */
+/* MENSAJES DE DJANGO            */
+/* ============================== */
+ul.messages {
+    list-style: none;
+    padding: 0;
+    width: 340px;
+    margin: 0 auto 20px;
+}
+
+ul.messages li {
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+ul.messages li.success {
+    background-color: #a9dfbf;
+    color: #1e8449;
+    border: 1px solid #229954;
+}
+
+ul.messages li.error {
+    background-color: #f8d7da;
+    color: #c0392b;
+    border: 1px solid #e17055;
+}
+
+/* ============================== */
+/* PIE DEL FORMULARIO            */
+/* ============================== */
+.login-footer {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #000;
+}
+
+.login-footer a {
+    color: #47a747;
+    text-decoration: none;
+    transition: text-decoration 0.2s;
+}
+
+.login-footer a:hover {
+    text-decoration: underline;
+}
+
+/* ============================== */
+/* ANIMACIÓN DE ENTRADA          */
+/* ============================== */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================== */
+/* RESPONSIVO MÓVIL              */
+/* ============================== */
+@media (max-width: 400px) {
+    .login-box {
+        width: 90%;
+        padding: 20px;
+    }
+
+    ul.messages {
+        width: 90%;
+    }
+}

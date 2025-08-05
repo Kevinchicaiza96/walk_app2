@@ -1,0 +1,181 @@
+/* === RESETEO GENERAL === */
+body {
+  background-image: url(../images/fotos/Wallpaper_Rutas.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding-top: 90px;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f8f9fa;
+  color: #343a40;
+  line-height: 1.6;
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* === CONTENEDOR PRINCIPAL === */
+.ranking-stats-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* === SECCIONES === */
+section {
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+
+.section-title {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #00cc2e;
+  text-align: center;
+}
+
+/* === RANKING LIST === */
+.ranking-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ranking-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #eee;
+  font-size: 1.1rem;
+}
+
+.ranking-item span:first-child {
+  font-weight: bold;
+}
+
+.ranking-item.gold {
+  background-color: #fff9c4;
+}
+
+.ranking-item.silver {
+  background-color: #e0e0e0;
+}
+
+.ranking-item.bronze {
+  background-color: #ffe0b2;
+}
+
+/* === ESTADÍSTICAS INTERACTIVAS === */
+.stats-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card.interactive {
+  flex: 1 1 40%;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 1rem;
+  cursor: pointer;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.stat-card.interactive:hover {
+  transform: scale(1.05);
+  background-color: #f0f8ff;
+}
+
+.footprint-deco {
+  position: absolute;
+  bottom: 8px;
+  right: 10px;
+  font-size: 3.5em;
+  color: rgba(0, 0, 0, 0.05);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.stat-card > *:not(.footprint-deco) {
+  position: relative;
+  z-index: 1;
+}
+
+.chart-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* === CAMINATAS RECIENTES === */
+.hikes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.hike-card {
+  background-color: #fff;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+}
+
+.hike-card:hover {
+  transform: scale(1.02);
+}
+
+.hike-image {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.hike-info {
+  padding: 1rem;
+}
+
+.hike-title {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.hike-tag {
+  display: inline-block;
+  margin-top: 0.5rem;
+  background-color: #e0f7fa;
+  color: #00796b;
+  padding: 0.3em 0.7em;
+  border-radius: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+/* === ANIMACIONES RESPONSIVAS === */
+@media (max-width: 768px) {
+  .ranking-item,
+  .stats-table th,
+  .stats-table td {
+    font-size: 0.95rem;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+}

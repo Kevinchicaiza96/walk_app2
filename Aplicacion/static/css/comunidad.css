@@ -1,0 +1,274 @@
+:root {
+    --color-acento: #00b341;
+    --color-fondo: #f9f9f9;
+    --color-card: #ffffff;
+    --color-texto: #1c1c1c;
+    --color-secundario: #777;
+    --borde-suave: 12px;
+    --sombra-suave: 0 4px 14px rgba(0, 0, 0, 0.1);
+    --transicion: all 0.3s ease;
+    --fuente: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fuente);
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    line-height: 1.6;
+}
+
+/* Contenedor principal */
+.comunidad-container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: var(--color-card);
+    border-radius: var(--borde-suave);
+    box-shadow: var(--sombra-suave);
+}
+
+.titulo-comunidad {
+    text-align: center;
+    font-size: 2.4rem;
+    color: var(--color-acento);
+    margin-bottom: 2rem;
+    font-weight: bold;
+}
+
+/* Sistema de alertas */
+.messages {
+    list-style: none;
+    margin-bottom: 2rem;
+}
+.messages .alert {
+    padding: 1rem;
+    border-radius: var(--borde-suave);
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+.alert.success { background-color: #d0f5dd; color: #137333; }
+.alert.error { background-color: #fddede; color: #a33030; }
+
+/* Formulario de publicación */
+.formulario-publicacion {
+    background-color: #f1f1f1;
+    padding: 1.5rem;
+    border-radius: var(--borde-suave);
+    box-shadow: var(--sombra-suave);
+}
+.formulario-publicacion h3 {
+    margin-bottom: 1rem;
+    color: var(--color-acento);
+    font-size: 1.4rem;
+}
+.formulario-publicacion label {
+    display: block;
+    margin-top: 1rem;
+    font-weight: bold;
+    color: var(--color-texto);
+}
+.formulario-publicacion input,
+.formulario-publicacion textarea,
+.formulario-publicacion select {
+    width: 100%;
+    padding: 0.8rem;
+    margin-top: 0.3rem;
+    border-radius: var(--borde-suave);
+    border: 1px solid #ccc;
+    background-color: #fff;
+    transition: var(--transicion);
+}
+.formulario-publicacion input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--color-acento);
+    outline: none;
+}
+.form-errors {
+    margin-top: 1rem;
+    color: #d00000;
+}
+
+/* Botón publicar */
+.btn-publicar {
+    margin-top: 1.5rem;
+    padding: 0.9rem 1.6rem;
+    background-color: var(--color-acento);
+    border: none;
+    border-radius: var(--borde-suave);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transicion);
+}
+.btn-publicar:hover {
+    background-color: #009c36;
+}
+
+/* Separador */
+.divider {
+    height: 2px;
+    background-color: #ddd;
+    border: none;
+    margin: 3rem 0;
+}
+
+/* Tarjetas de publicaciones */
+.card-publicacion {
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: var(--borde-suave);
+    box-shadow: var(--sombra-suave);
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+/* Animación entrada */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.header-publicacion {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+.usuario-info strong {
+    color: var(--color-acento);
+    font-size: 1.1rem;
+}
+.fecha {
+    font-size: 0.9rem;
+    color: var(--color-secundario);
+}
+
+.imagen-publicacion img {
+    width: 100%;
+    border-radius: var(--borde-suave);
+    margin-bottom: 1rem;
+    object-fit: cover;
+    max-height: 400px;
+}
+
+.contenido-publicacion p {
+    margin-bottom: 0.7rem;
+}
+
+/* Sección comentarios */
+.comentarios {
+    margin-top: 1.5rem;
+    background-color: #f5f5f5;
+    padding: 1rem;
+    border-radius: var(--borde-suave);
+}
+.comentarios h4 {
+    margin-bottom: 1rem;
+    color: var(--color-acento);
+}
+.comentarios p {
+    margin-bottom: 0.5rem;
+}
+.sin-comentarios {
+    font-style: italic;
+    color: var(--color-secundario);
+}
+
+/* Comentario input + botón */
+.form-comentario {
+    display: flex;
+    margin-top: 1rem;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+.form-comentario input[type="text"] {
+    flex-grow: 1;
+    padding: 0.6rem;
+    border-radius: var(--borde-suave);
+    border: 1px solid #ccc;
+}
+.btn-comentar {
+    padding: 0.6rem 1rem;
+    background-color: var(--color-acento);
+    border: none;
+    border-radius: var(--borde-suave);
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: var(--transicion);
+}
+.btn-comentar:hover {
+    background-color: #009c36;
+}
+
+/* Input tipo file */
+.custom-file-upload {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.upload-label {
+    background-color: var(--color-acento);
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--borde-suave);
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transicion);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.upload-label:hover {
+    background-color: #009c36;
+}
+
+.custom-file-upload input[type="file"] {
+    display: none;
+}
+
+.file-name {
+    font-size: 0.9rem;
+    color: var(--color-secundario);
+    max-width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Publicaciones vacías */
+.sin-publicaciones {
+    text-align: center;
+    font-style: italic;
+    color: var(--color-secundario);
+    margin-top: 2rem;
+    font-size: 1.1rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .form-comentario {
+        flex-direction: column;
+    }
+    .form-comentario input[type="text"],
+    .btn-comentar {
+        width: 100%;
+    }
+}

@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Usuarios</title>
+    <link rel="stylesheet" href="{% static 'css/admins/viewsadmin.css'%}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+</head>
+<body>
+    {% include 'html/partials/navbar.html' %}
+
+    <h1>Usuarios Registrados</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Usuario</th>
+                <th>Email</th>
+                <th>¿Es staff?</th>
+                <th>¿Superusuario?</th>
+                <th>Último login</th>
+            </tr>
+        </thead>
+        <tbody>
+    {% for usuario in usuarios %}
+        <tr>
+            <td data-label="ID">{{ usuario.id }}</td>
+            <td data-label="Usuario">{{ usuario.username }}</td>
+            <td data-label="Email">{{ usuario.email }}</td>
+            <td data-label="¿Es staff?">{{ usuario.is_staff }}</td>
+            <td data-label="¿Superusuario?">{{ usuario.is_superuser }}</td>
+            <td data-label="Último login">{{ usuario.last_login|date:"d/m/Y H:i" }}</td>
+        </tr>
+    {% empty %}
+        <tr><td colspan="6">No hay usuarios registrados.</td></tr>
+    {% endfor %}
+</tbody>
+    </table>
+</body>
+</html>

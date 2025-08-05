@@ -1,0 +1,264 @@
+/* rutas.css */
+
+/* ========== ESTILOS BASE Y CONTAINER ========== */
+.rutas-container {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    padding: 20px;
+    background-color: #f4f4f4;
+    color: #333;
+    max-width: 1200px;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.rutas-titulo {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 15px;
+}
+
+/* ========== GRID DE RUTAS ========== */
+.rutas-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    justify-content: center;
+}
+
+/* ========== TARJETAS DE RUTA ========== */
+.rutas-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    animation: fadeInUp 0.4s ease-in-out both;
+}
+
+.rutas-card:hover {
+    transform: translateY(-7px) scale(1.02);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.card-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ========== CONTENIDO DE LA TARJETA ========== */
+.card-content {
+    padding: 15px 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-title {
+    font-size: 1.4rem;
+    margin-top: 0;
+    margin-bottom: 10px;
+    line-height: 1.3;
+}
+
+.card-title-link {
+    text-decoration: none;
+    color: #3498db;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    word-break: break-word;
+}
+
+.card-title-link:hover {
+    color: #2980b9;
+}
+
+.card-title-link:focus {
+    outline: 3px solid #3498db;
+    outline-offset: 2px;
+}
+
+.card-difficulty {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: auto;
+}
+
+.card-difficulty span {
+    font-weight: bold;
+    color: #555;
+    padding: 4px 8px;
+    background-color: #ecf0f1;
+    border-radius: 3px;
+    display: inline-block;
+    margin-left: 5px;
+    border-left: 5px solid #bbb;
+    padding-left: 10px;
+}
+
+.card-difficulty span.facil { border-color: #2ecc71; }
+.card-difficulty span.media { border-color: #f1c40f; }
+.card-difficulty span.dificil { border-color: #e74c3c; }
+
+.card-difficulty span:hover {
+    background-color: #dfe6e9;
+}
+
+/* ========== MENSAJE CUANDO NO HAY RUTAS ========== */
+.rutas-card.rutas-vacio {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+    color: #777;
+    font-style: italic;
+    background-color: #fdfdfd;
+    box-shadow: none;
+    border: 1px dashed #ccc;
+    display: block;
+}
+
+/* ========== BOTÓN NUEVA RUTA ========== */
+.rutas-accion {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.rutas-boton-nueva {
+    display: inline-block;
+    padding: 0.75rem 1.875rem;
+    background-color: #2ecc71;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    animation: pulse 2s infinite;
+}
+
+.rutas-boton-nueva:hover {
+    background-color: #27ae60;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.rutas-boton-nueva:active {
+    transform: translateY(0);
+}
+
+.rutas-boton-nueva:focus {
+    outline: 3px solid #3498db;
+    outline-offset: 2px;
+}
+
+/* ========== ANIMACIONES ========== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 0 10px rgba(46, 204, 113, 0);
+    }
+}
+
+/* ========== ACCESIBILIDAD Y FOCUS ========== */
+.rutas-card:focus-within {
+    outline: 2px dashed #3498db;
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+@media (max-width: 992px) {
+    .rutas-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .rutas-container {
+        padding: 15px;
+        margin: 15px;
+    }
+
+    .rutas-titulo {
+        font-size: 2em;
+        margin-bottom: 25px;
+        padding-bottom: 10px;
+    }
+
+    .rutas-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+    }
+
+    .card-image {
+        height: 180px;
+    }
+
+    .card-content {
+        padding: 12px 15px;
+    }
+
+    .card-title {
+        font-size: 1.3rem;
+    }
+
+    .card-difficulty {
+        font-size: 0.85rem;
+    }
+
+    .rutas-boton-nueva {
+        padding: 10px 25px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .rutas-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .rutas-card {
+        margin: 0 auto;
+        max-width: 350px;
+    }
+
+    .rutas-titulo {
+        font-size: 1.8em;
+    }
+
+    .card-image {
+        height: 160px;
+    }
+}

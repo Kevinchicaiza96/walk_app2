@@ -1,0 +1,54 @@
+{% extends 'html/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/rutas.css' %}">
+{% endblock %}
+
+{% block content %}
+<main class="rutas-container" role="main">
+    <header>
+        <h1 class="rutas-titulo">Nuestras Rutas de Senderismo</h1>
+    </header>
+
+    <section class="rutas-listado">
+        <ul class="rutas-grid" aria-label="Listado de rutas de senderismo">
+            {% for ruta in rutas %}
+                <li class="rutas-card">
+                    <article class="card">
+                        <figure class="card-image">
+                            <img 
+                                src="{% if ruta.imagen %}{{ ruta.imagen.url }}{% else %}{% static 'images/el morro/Maravillas-de-Popayan.jpg' %}{% endif %}"
+                                alt="Imagen de la ruta {{ ruta.nombre_ruta }}"
+                                loading="lazy"
+                            >
+                        </figure>
+                        <div class="card-content">
+                            <h2 class="card-title">
+                                <a href="{% url 'detalle_ruta' ruta.id %}" class="card-title-link">
+                                    {{ ruta.nombre_ruta }}
+                                </a>
+                            </h2>
+                            <p class="card-difficulty">
+                                <strong>Dificultad:</strong> <span>{{ ruta.dificultad }}</span>
+                            </p>
+                        </div>
+                    </article>
+                </li>
+            {% empty %}
+                <li class="rutas-card rutas-vacio" aria-live="polite">
+                    No hay rutas disponibles para mostrar.
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    {% if request.user.is_authenticated and request.user.is_staff %}
+        <div class="rutas-accion">
+            <a href="{% url 'crear_ruta' %}" class="rutas-boton-nueva">
+                + Añadir Nueva Ruta
+            </a>
+        </div>
+    {% endif %}
+</main>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'html/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/juegos.css' %}">
+{% endblock %}
+
+{% block content %}
+
+  <!-- ===== CONTENIDO JUEGOS ====== -->
+  <button class="salir"><a href="{% url 'home' %}">Cerrar</a></button>
+  <main class="mover">
+    <div class="card">
+      <p class="heading">Trivia Popayán</p>
+      <p class="para">Pon a prueba tus conocimientos sobre la ciudad blanca</p>
+      <div class="overlay"></div>
+      <a href="{% url 'trivia_index' %}" class="card-btn">Jugar</a>
+    </div>
+<!-- 
+    <div class="card">
+      <p class="heading">None</p>
+      <p class="para">None</p>
+      <div class="overlay"></div>
+      <a href="#" class="card-btn">Jugar</a>
+    </div> -->
+  </main>
+{% endblock %}

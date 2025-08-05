@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Usuario</title>
+    <link rel="stylesheet" href="{% static 'css/login/registro.css' %}">
+</head>
+<body>
+    <main class="contenedor" role="main">
+        <section class="formulario" aria-labelledby="titulo-registro">
+            <form method="post" action="" novalidate>
+                {% csrf_token %}
+                <img src="{% static 'images/imagenes/logo.jpg' %}" alt="Logo de Walk App" loading="lazy">
+                <h1 id="titulo-registro">Registro de Usuario</h1>
+
+                <!-- Errores del formulario -->
+                {% if form.errors %}
+                    <div class="errores" role="alert" aria-live="polite">
+                        <ul>
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <li><strong>{{ field.label }}:</strong> {{ error }}</li>
+                                {% endfor %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+
+                <!-- Mensajes de éxito o información -->
+                {% if messages %}
+                    <ul class="mensajes" role="alert" aria-live="polite">
+                        {% for message in messages %}
+                            <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+                                {{ message }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                <!-- Campos del formulario -->
+                {{ form.as_p }}
+
+                <button type="submit" class="btn-registro">Registrarse</button>
+                <nav class="enlaces-secundarios">
+                    <p><a href="{% url 'login' %}">¿Ya tienes cuenta? Inicia sesión</a></p>
+                    <p><a href="{% url 'password_reset' %}">¿Olvidaste tu contraseña?</a></p>
+                </nav>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

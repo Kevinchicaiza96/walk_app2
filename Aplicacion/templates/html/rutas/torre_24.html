@@ -1,0 +1,117 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Torre 24</title>
+    <link rel="stylesheet" href="{% static 'css/rutas/torre24.css' %}">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Django Torre 24</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#cards">Características</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#map-section">Ubicación</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#route-section">Ruta</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="py-5 text-center bg-light">
+        <div class="container">
+            <h1 class="display-4">Bienvenido a Django Torre 24</h1>
+            <p class="lead">Explora la ruta y las características principales.</p>
+        </div>
+    </header>
+
+    <main class="container my-5">
+        <section id="cards">
+            <h2 class="text-center mb-4">Características Destacadas</h2>
+            <div class="card-container">
+                <div class="card">
+                    <img src="https://via.placeholder.com/286x180?text=Caracter%C3%ADstica+1" class="card-img-top" alt="Característica 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Seguridad Avanzada</h5>
+                        <p class="card-text">Sistemas de seguridad de última generación para tu tranquilidad.</p>
+                        <a href="#" class="btn btn-primary">Más Info</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://via.placeholder.com/286x180?text=Caracter%C3%ADstica+2" class="card-img-top" alt="Característica 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Acceso Rápido</h5>
+                        <p class="card-text">Conexión a principales vías y transporte público.</p>
+                        <a href="#" class="btn btn-primary">Más Info</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://via.placeholder.com/286x180?text=Caracter%C3%ADstica+3" class="card-img-top" alt="Característica 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Servicios Completos</h5>
+                        <p class="card-text">Áreas comunes, gimnasio y zonas verdes para disfrutar.</p>
+                        <a href="#" class="btn btn-primary">Más Info</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="map-section">
+            <h2 class="text-center mb-4">Ubicación de Django Torre 24</h2>
+            <div id="map"></div>
+        </section>
+
+        <hr>
+
+        <section id="route-section" class="route-info">
+            <h2 class="text-center mb-4">Información de la Ruta</h2>
+            <p><strong>Punto de Partida:</strong> [Dirección de Origen, Ejemplo: Carrera 10 # 5-20, Popayán]</p>
+            <p><strong>Punto de Destino:</strong> [Dirección de Destino, Ejemplo: Django Torre 24, Calle 1N # 8-50, Popayán]</p>
+            <p><strong>Distancia Aproximada:</strong> [Ejemplo: 3.5 km]</p>
+            <p><strong>Tiempo Estimado:</strong> [Ejemplo: 10 minutos en coche, 25 minutos a pie]</p>
+            <h4>Instrucciones Detalladas:</h4>
+            <ol>
+                <li>Comienza en [Punto de Partida].</li>
+                <li>Dirígete hacia el [Norte/Sur/Este/Oeste] por [Nombre de la Calle/Avenida].</li>
+                <li>Gira a la [izquierda/derecha] en [Nombre de la Calle/Avenida].</li>
+                <li>Continúa recto hasta llegar a [Punto de Destino].</li>
+                <li>[Añade más pasos si es necesario para una ruta más compleja].</li>
+            </ol>
+            <p>
+                Puedes visualizar la ruta exacta en el mapa de arriba. Utiliza los controles del mapa para acercar, alejar y moverte.
+                También puedes buscar rutas alternativas en [enlace a Google Maps o similar].
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Django Torre 24. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="{% static '/js/torre24.js' %}"></script>
+    </script>
+</body>
+</html>

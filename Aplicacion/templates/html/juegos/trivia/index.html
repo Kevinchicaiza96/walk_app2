@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Juego de trivia sobre senderismo. Responde preguntas y demuestra cuánto sabes sobre las rutas de Popayán.">
+    <link rel="stylesheet" href="{% static 'css/juego-trivia/index.css' %}">
+    <link rel="icon" href="{% static 'images/imagenes/logo.jpg' %}" type="image/x-icon">
+    <title>¿Cuánto Sabes sobre Senderismo?</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="puntaje">
+                <img src="{% static 'images/iconos/puntos.png' %}" alt="" aria-hidden="true">
+                <span class="puntos">0</span>
+            </div>
+            <h1>¡Desafío Senderista!</h1>
+            <div class="jugador">
+                <span class="nombre">-</span>
+                <img src="{% static 'images/iconos/user.png' %}" alt="Avatar del jugador" class="avatar" id="avatar">
+            </div>
+        </header>
+
+        <main class="inicio">
+            <h2>¡Bienvenido a la Aventura!</h2>
+            <p>Ingresa tu nombre para comenzar el desafío de senderismo</p>
+
+            <form id="form-nombre" onsubmit="return false;">
+                <label for="nombre" class="sr-only">Nombre del jugador</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Escribe tu nombre aquí" required>
+                <button type="button" class="btn" id="comenzar" data-url="{% url 'trivia_index' %}">Comenzar</button>
+            </form>
+
+            <a href="{% url 'home' %}" class="btn btn-regresar" role="button">Regresar al inicio</a>
+        </main>
+    </div>
+
+    <script src="{% static 'js/trivia-index.js' %}"></script>
+</body>
+</html>

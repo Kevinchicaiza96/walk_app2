@@ -1,0 +1,91 @@
+{% extends 'html/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/rutas/detalle.css' %}">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+{% endblock %}
+
+{% block title %}{{ ruta.nombre_ruta }} - Detalles{% endblock %}
+
+{% block content %}
+<div class="detalle-container">
+  <h1>{{ ruta.nombre_ruta }}</h1>
+
+  <section class="info-basica">
+    <p><i class="fas fa-align-left"></i> <strong>Descripción:</strong> {{ ruta.descripcion }}</p>
+    <p><i class="fas fa-ruler-horizontal"></i> <strong>Longitud:</strong> {{ ruta.longitud }} km</p>
+    <p><i class="fas fa-mountain"></i> <strong>Dificultad:</strong> {{ ruta.dificultad }}</p>
+    <p><i class="fas fa-map-marker-alt"></i> <strong>Ubicación:</strong> {{ ruta.ubicacion }}</p>
+    <p><i class="fas fa-stopwatch"></i> <strong>Duración estimada:</strong> 3 horas</p>
+    <p><i class="fas fa-road"></i> <strong>Tipo de terreno:</strong> Mixto (tierra, piedra, pasto)</p>
+    <p><i class="fas fa-tree"></i> <strong>Altura promedio:</strong> 1800 m.s.n.m</p>
+  </section>
+
+  <section class="recomendaciones">
+    <h2><i class="fas fa-lightbulb"></i> Recomendaciones</h2>
+    <ul>
+      <li><i class="fas fa-check-circle"></i> Llevar suficiente agua.</li>
+      <li><i class="fas fa-check-circle"></i> Usar protector solar y sombrero.</li>
+      <li><i class="fas fa-check-circle"></i> Llevar calzado adecuado para senderismo.</li>
+      <li><i class="fas fa-check-circle"></i> No dejar basura en el camino.</li>
+      <li><i class="fas fa-check-circle"></i> Respetar la flora y fauna del lugar.</li>
+    </ul>
+  </section>
+{% if user.is_authenticated %}
+  <section class="acciones">
+    {% if es_favorita %}
+      <a href="{% url 'quitar_favorita' ruta.id %}" class="btn btn-danger">
+        <i class="fas fa-times-circle"></i> Quitar de Favoritas
+      </a>
+    {% else %}
+      <a href="{% url 'marcar_favorita' ruta.id %}" class="btn btn-success">
+        <i class="fas fa-star"></i> Marcar como Favorita
+      </a>
+    {% endif %}
+    <a href="{% url 'rutas' %}" class="btn btn-secondary">
+      <i class="fas fa-arrow-left"></i> Volver a la Lista de Rutas
+    </a>
+  </section>
+{% else %}
+  <p><a href="{% url 'login' %}">Inicia sesión</a> para marcar esta ruta como favorita.</p>
+{% endif %}
+  {% if request.user.is_superuser %}
+    <form action="{% url 'eliminar_ruta' ruta.id %}" method="post" style="display:inline;">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-outline-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar esta ruta?');">
+        <i class="fas fa-trash-alt"></i> Eliminar Ruta
+      </button>
+    </form>
+  {% endif %}
+</section>
+
+  <section class="mapa">
+    <h2><i class="fas fa-map"></i> Mapa de la Ruta</h2>
+    <div id="map"></div>
+  </section>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    const coordenadasRuta = [
+      [2.444814, -76.614739],
+      [2.445200, -76.615500],
+      [2.445800, -76.616300]
+    ];
+
+    const mapa = L.map('map').setView(coordenadasRuta[0], 15);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(mapa);
+
+    const ruta = L.polyline(coordenadasRuta, { color: 'blue' }).addTo(mapa);
+    mapa.fitBounds(ruta.getBounds());
+
+    L.marker(coordenadasRuta[0]).addTo(mapa).bindPopup("Inicio").openPopup();
+    L.marker(coordenadasRuta[coordenadasRuta.length - 1]).addTo(mapa).bindPopup("Fin");
+  </script>
+{% endblock %}
