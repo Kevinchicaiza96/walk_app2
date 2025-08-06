@@ -5,50 +5,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Usuario</title>
+
+    <!-- Estilos principales -->
     <link rel="stylesheet" href="{% static 'css/login/registro.css' %}">
+
+    <!-- Estilos del modal reutilizable -->
+    <link rel="stylesheet" href="{% static 'css/componentes/modal.css' %}">
 </head>
 <body>
-    <main class="contenedor" role="main">
-        <section class="formulario" aria-labelledby="titulo-registro">
-            <form method="post" action="" novalidate>
-                {% csrf_token %}
-                <img src="{% static 'images/imagenes/logo.jpg' %}" alt="Logo de Walk App" loading="lazy">
-                <h1 id="titulo-registro">Registro de Usuario</h1>
 
-                <!-- Errores del formulario -->
-                {% if form.errors %}
-                    <div class="errores" role="alert" aria-live="polite">
-                        <ul>
-                            {% for field in form %}
-                                {% for error in field.errors %}
-                                    <li><strong>{{ field.label }}:</strong> {{ error }}</li>
-                                {% endfor %}
-                            {% endfor %}
-                        </ul>
-                    </div>
-                {% endif %}
+<main class="contenedor" role="main">
+    <section class="formulario" aria-labelledby="titulo-registro" role="form">
 
-                <!-- Mensajes de éxito o información -->
-                {% if messages %}
-                    <ul class="mensajes" role="alert" aria-live="polite">
-                        {% for message in messages %}
-                            <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
-                                {{ message }}
-                            </li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
+        <form method="post" novalidate>
+            {% csrf_token %}
 
-                <!-- Campos del formulario -->
+            <!-- Logo de la aplicación -->
+            <img src="{% static 'images/imagenes/logo.jpg' %}" alt="Logo de Walk App" class="logo" loading="lazy">
+
+            <!-- Título principal del formulario -->
+            <h1 id="titulo-registro">Registro de Usuario</h1>
+
+            <!-- Campos del formulario renderizados automáticamente -->
+            <div class="campos-formulario">
                 {{ form.as_p }}
+            </div>
 
-                <button type="submit" class="btn-registro">Registrarse</button>
-                <nav class="enlaces-secundarios">
-                    <p><a href="{% url 'login' %}">¿Ya tienes cuenta? Inicia sesión</a></p>
-                    <p><a href="{% url 'password_reset' %}">¿Olvidaste tu contraseña?</a></p>
-                </nav>
-            </form>
-        </section>
-    </main>
+            <!-- Botón de registro -->
+            <button type="submit" class="btn-registro" aria-label="Registrarse en Walk App">Registrarse</button>
+
+            <!-- Enlaces adicionales -->
+            <nav class="enlaces-secundarios">
+                <p><a href="{% url 'login' %}">¿Ya tienes cuenta? Inicia sesión</a></p>
+                <p><a href="{% url 'password_reset' %}">¿Olvidaste tu contraseña?</a></p>
+            </nav>
+        </form>
+    </section>
+</main>
+
+<!-- Modal de errores -->
+{% if form.errors or form.non_field_errors %}
+<div id="modalErrores" class="modal">
+    <div class="modal-content">
+        <h2>Errores en el formulario</h2>
+        <ul>
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <li><strong>{{ field.label }}:</strong> {{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                <li><strong>Error:</strong> {{ error }}</li>
+            {% endfor %}
+        </ul>
+        <button class="close-btn" onclick="cerrarModal()">Cerrar</button>
+    </div>
+</div>
+{% endif %}
+
+
+<!-- Scripts -->
+<script>
+    // Mostrar el modal si hay errores
+    window.onload = function() {
+        var modal = document.getElementById('modalErrores');
+        if (modal) {
+            modal.style.display = 'block';
+        }
+    };
+
+    function cerrarModal() {
+        document.getElementById('modalErrores').style.display = 'none';
+    }
+</script>
+
 </body>
 </html>

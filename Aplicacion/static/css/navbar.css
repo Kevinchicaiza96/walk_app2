@@ -275,41 +275,38 @@ body {
   flex-direction: column;
 }
 
-/* Mostrar */
 .buscador-overlay.active {
   display: flex;
 }
 
-/* Input grande */
+.buscador-overlay form {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .buscador-overlay input[type="text"] {
   width: 80%;
-  max-width: 600px;
+  max-width: 500px;
   padding: 1rem;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   border: none;
   border-radius: 10px;
-  margin-bottom: 1rem;
   outline: none;
+  background-color: #fff;
+  color: #000;
 }
 
-/* Botón */
+/* Botones de iconos */
 .buscador-overlay button {
-  padding: 0.7rem 2rem;
-  font-size: 1rem;
-  background-color: #00ff37;
-  color: black;
+  background-color: transparent;
   border: none;
-  border-radius: 8px;
+  font-size: 1.8rem;
+  color: #00ff37;
   cursor: pointer;
-  font-weight: bold;
+  transition: color 0.3s ease;
 }
 
-/* Botón cerrar */
-.buscador-overlay .cerrar {
-  position: absolute;
-  top: 20px;
-  right: 40px;
-  font-size: 2rem;
-  color: white;
-  cursor: pointer;
+.buscador-overlay button:hover {
+  color: #00cc2a;
 }
