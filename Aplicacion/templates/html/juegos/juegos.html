@@ -1,0 +1,48 @@
+{% extends 'html/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/juegos.css' %}">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="juegos-wrapper">
+
+  <!-- HERO / Introducción -->
+  <section class="hero-juegos" style="background-image: url('{% static 'images/fondos/hero_senderismo.jpg' %}')">
+    <div class="hero-overlay">
+      <h2>Explora, Aprende y Diviértete</h2>
+      <p>Sumérgete en la aventura del senderismo en Popayán con nuestros juegos interactivos.</p>
+    </div>
+  </section>
+
+  <!-- Grid de juegos -->
+  <section class="juegos-grid">
+
+    <!-- Juego 1 -->
+    <article class="juego-card" style="--bg-url: url('{% static 'images/imagenes/trivia_popayan.png' %}')">
+      <div class="game-badges">
+        <span><i class="fas fa-brain"></i> Trivia</span>
+        <span><i class="fas fa-hourglass-half"></i> 5 min</span>
+      </div>
+      <h2>Trivia Popayán</h2>
+      <p>Pon a prueba tus conocimientos sobre la ciudad blanca.</p>
+      <a href="{% url 'trivia_index' %}" class="btn-jugar">Jugar</a>
+    </article>
+
+    <!-- Juego 2 -->
+    <article class="juego-card" style="--bg-url: url('{% static 'images/imagenes/mapa_roto.jpeg' %}')">
+      <div class="game-badges">
+        <span><i class="fas fa-map"></i> Estrategia</span>
+        <span><i class="fas fa-hourglass-half"></i> 7 min</span>
+      </div>
+      <h2>Mapa Roto</h2>
+      <p>Reconstruye la ruta correcta en el mapa.</p>
+      <a href="{% url 'mapa_roto' %}" class="btn-jugar">Jugar</a>
+    </article>
+
+  </section>
+
+</div>
+{% endblock %}

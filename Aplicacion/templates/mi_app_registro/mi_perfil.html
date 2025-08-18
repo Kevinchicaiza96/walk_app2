@@ -1,0 +1,50 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil - Walk App</title>
+    <link rel="stylesheet" href="{% static 'css/login/perfil.css' %}">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar" role="complementary">
+            <section class="profile-card">
+                <header>
+                    <img src="{% static '/images/iconos/avatar.avif' %}" alt="Foto de perfil de Kevin Chicaiza" class="avatar">
+                    <h2>Kevin Chicaiza</h2>
+                    <p>Popayán, Cauca, Colombia</p>
+                    <p class="member-since">Miembro desde Febrero 2025</p>
+                </header>
+                <div class="profile-followers">
+                    <span><strong>0</strong> Seguidores</span>
+                    <span><strong>0</strong> Siguiendo</span>
+                </div>
+                <nav class="profile-links">
+                    <a href="#">📊 Estadísticas</a>
+                    <a href="#">📋 Listas</a>
+                </nav>
+            </section>
+        </aside>
+
+        <main class="main-content">
+            <nav class="tabs" role="navigation">
+                <a href="#" class="active">Feed</a>
+                <a href="#">Fotos</a>
+                <a href="#">Reseñas</a>
+                <a href="#">Actividades</a>
+                <a href="#">Completado</a>
+            </nav>
+
+            <section class="no-posts" aria-label="Sin publicaciones">
+                <img src="{% static '/images/fotos/avatar1.png' %}" alt="Icono de oso explorador" class="bear-icon">
+                <h3>Aún no hay publicaciones</h3>
+                <p>Inspira a tus amigos con reseñas, listas y aventuras.</p>
+                <a href="#" class="btn-explore" role="button">Explorar Rutas</a>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

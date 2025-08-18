@@ -1,0 +1,80 @@
+{% extends 'html/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/vista-morro.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<!-- ========= CONTENIDO RUTA MORRO ========= -->
+  
+  <div class="container">
+  <section>
+    <h2>Información de la Ruta</h2>
+    <table class="route-table">
+      <tr>
+        <th>Aspecto</th>
+        <th>Detalle</th>
+      </tr>
+      <tr>
+        <td>Recorrido</td>
+        <td>Circular</td>
+      </tr>
+      <tr>
+        <td>Tipo de terreno</td>
+        <td>Mixto (senderos de tierra y piedra)</td>
+      </tr>
+      <tr>
+        <td>Distancia</td>
+        <td>5 km</td>
+      </tr>
+      <tr>
+        <td>Dificultad</td>
+        <td>Moderada</td>
+      </tr>
+    </table>
+
+    <div id="map" role="region" aria-label="Mapa de la ruta El Morro"></div>
+
+    <div class="text-center mt-4">
+      <a href="#" class="btn btn-success btn-lg">Ver Ruta</a>
+    </div>
+  </section>
+
+  <section class="highlight mt-5">
+    <h2>¿Por qué visitar El Morro?</h2>
+    <p>El Morro ofrece una experiencia única para los amantes del senderismo, con vistas panorámicas, aire fresco y una conexión especial con la naturaleza.</p>
+  </section>
+
+  <section class="cards mt-4">
+    <div class="card">
+      <img src="{% static '/images/el morro/el-morro.webp' %}" alt="Paisaje" />
+      <h3>Paisajes Naturales</h3>
+      <p>Disfruta de vistas espectaculares y una conexión única con la naturaleza.</p>
+    </div>
+    <div class="card">
+      <img src="{% static '/images/el morro/6LjKwG6bZVBsMHwWSFoZ3DePdEjmZ1kbt5rjH_SZo10.webp' %}" alt="Fauna" />
+      <h3>Fauna Local</h3>
+      <p>Descubre la diversidad de especies que habitan en la región.</p>
+    </div>
+    <div class="card">
+      <img src="{% static '/images/el morro/morro.png' %}" alt="Historia" />
+      <h3>Historia y Cultura</h3>
+      <p>Conoce la importancia histórica y cultural de El Morro en Popayán.</p>
+    </div>
+    <div class="card">
+      <img src="{% static  '/images/el morro/Maravillas-de-Popayan.jpg' %}" alt="Aventura" />
+      <h3>Aventura</h3>
+      <p>Vive una experiencia emocionante en un entorno natural único.</p>
+    </div>
+  </section>
+</div>
+
+
+{% endblock %}
+
+{% block extra_js %}
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="{% static '/js/vista.js' %}"></script>
+{% endblock %}

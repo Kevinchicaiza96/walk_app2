@@ -1,0 +1,288 @@
+/* ========================== VARIABLES GLOBALES ========================== */
+
+:root {
+    --color-principal: #27ae60;
+    --color-principal-hover: #218838;
+    --color-fondo: #f0f8ff;
+    --color-input-bg: rgba(241, 248, 255, 0.85);
+    --color-input-border: #ccc;
+    --color-input-focus: #28a745;
+    --color-texto: #333;
+    --color-error-text: #dc3545;
+    --color-success-bg: #d4edda;
+    --color-success-text: #155724;
+    --color-success-icon: #28a745;
+    --shadow-principal: 0 6px 20px rgba(0, 0, 0, 0.25);
+    --shadow-img: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --border-radius: 6px;
+    --border-radius-lg: 15px;
+    --font-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ========================== RESET & BASE ========================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: var(--fuente);
+}
+
+body {
+    position: relative;
+    font-family: var(--fuente);
+    color: var(--color-texto);
+    line-height: 1.6;
+    min-height: 100vh;
+    margin-top: 120px;
+    background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), 
+                url(../images/fotos/Wallpaper_Rutas.png) center center fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* ========================== CONTENEDOR PRINCIPAL ========================== */
+.comunidad-container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: var(--borde-suave);
+    box-shadow: var(--sombra-suave);
+}
+
+/* ========================== TITULO ========================== */
+.titulo-comunidad {
+    text-align: center;
+    font-size: 2.4rem;
+    color: var(--color-acento);
+    margin-bottom: 2rem;
+    font-weight: bold;
+}
+
+/* ========================== MENSAJES ========================== */
+.messages {
+    list-style: none;
+    margin-bottom: 2rem;
+}
+.messages .alert {
+    padding: 1rem;
+    border-radius: var(--borde-suave);
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+.alert.success { background-color: #d0f5dd; color: #137333; }
+.alert.error { background-color: #fddede; color: #a33030; }
+
+/* ========================== FORMULARIO DE PUBLICACIONES ========================== */
+.formulario-publicacion {
+    background-color: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: var(--borde-suave);
+    box-shadow: var(--sombra-suave);
+}
+.formulario-publicacion h3 {
+    margin-bottom: 1rem;
+    color: var(--color-acento);
+    font-size: 1.4rem;
+}
+.formulario-publicacion label {
+    display: block;
+    margin-top: 1rem;
+    font-weight: bold;
+    color: var(--color-texto);
+}
+.formulario-publicacion input,
+.formulario-publicacion textarea,
+.formulario-publicacion select,
+.form-comentario input[type="text"] {
+    width: 100%;
+    padding: 0.8rem;
+    margin-top: 0.3rem;
+    border-radius: var(--borde-suave);
+    border: 1px solid #ccc;
+    background-color: #fff;
+    transition: var(--transicion);
+}
+.formulario-publicacion input:focus,
+textarea:focus,
+select:focus,
+.form-comentario input:focus {
+    border-color: var(--color-acento);
+    outline: none;
+}
+.form-errors {
+    margin-top: 1rem;
+    color: #d00000;
+}
+
+/* Botones */
+.btn-publicar,
+.btn-comentar {
+    margin-top: 1rem;
+    padding: 0.9rem 1.6rem;
+    background-color: var(--color-acento);
+    border: none;
+    border-radius: var(--borde-suave);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transicion);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+.btn-publicar:hover,
+.btn-comentar:hover {
+    background-color: #009c36;
+}
+
+/* Divider */
+.divider {
+    height: 2px;
+    background-color: #ddd;
+    border: none;
+    margin: 3rem 0;
+}
+
+/* ========================== TARJETAS DE PUBLICACIONES ========================== */
+.card-publicacion {
+    background-color: var(--color-card);
+    padding: 1.5rem;
+    border-radius: var(--borde-suave);
+    box-shadow: var(--sombra-suave);
+    margin-bottom: 2rem;
+}
+
+.header-publicacion {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+.usuario-info strong {
+    color: var(--color-acento);
+    font-size: 1.1rem;
+}
+.fecha {
+    font-size: 0.9rem;
+    color: var(--color-secundario);
+}
+
+/* Imagen */
+.imagen-publicacion img {
+    width: 100%;
+    border-radius: var(--borde-suave);
+    margin-bottom: 1rem;
+    object-fit: cover;
+    max-height: 400px;
+}
+
+/* Contenido */
+.contenido-publicacion p {
+    margin-bottom: 0.7rem;
+}
+
+/* ========================== COMENTARIOS ========================== */
+.comentarios {
+    margin-top: 1.5rem;
+    background-color: #f5f5f5;
+    padding: 1rem;
+    border-radius: var(--borde-suave);
+}
+.comentarios h4 {
+    margin-bottom: 1rem;
+    color: var(--color-acento);
+}
+.comentarios p {
+    margin-bottom: 0.5rem;
+}
+.sin-comentarios {
+    font-style: italic;
+    color: var(--color-secundario);
+}
+
+/* Formulario de comentario */
+.form-comentario {
+    display: flex;
+    margin-top: 1rem;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+/* ========================== INPUT DE IMAGEN ========================== */
+.custom-file-upload {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
+}
+.upload-label {
+    background-color: var(--color-acento);
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--borde-suave);
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transicion);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.upload-label * {
+    color: white !important;
+}
+.upload-label:hover {
+    background-color: #009c36;
+}
+.custom-file-upload input[type="file"] {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    left: 0;
+    top: 0;
+}
+.file-name {
+    font-size: 0.9rem;
+    color: var(--color-secundario);
+    max-width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ========================== PREVIEW DE IMAGEN ========================== */
+#preview-container {
+    margin-top: 0.8rem;
+    display: flex;
+    justify-content: flex-start;
+}
+#preview {
+    max-width: 220px;
+    max-height: 180px;
+    border-radius: var(--borde-suave);
+    box-shadow: var(--sombra-suave);
+    object-fit: cover;
+    display: none;
+}
+
+/* ========================== RESPONSIVE ========================== */
+@media (max-width: 600px) {
+    .form-comentario {
+        flex-direction: column;
+    }
+    .form-comentario input[type="text"],
+    .btn-comentar {
+        width: 100%;
+    }
+    .custom-file-upload {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .comunidad-container {
+        padding: 1rem;
+        margin: 1rem;
+    }
+}

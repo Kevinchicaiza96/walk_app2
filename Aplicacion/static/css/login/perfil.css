@@ -1,0 +1,153 @@
+:root {
+    --primary-color: #017a5c;
+    --bg-color: #ffffff;
+    --text-color: #222;
+    --border-color: #e0e0e0;
+    --hover-color: #005f45;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    margin-top: 20px;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: row;
+}
+
+.sidebar {
+    width: 300px;
+    padding: 2rem;
+    background-color: var(--bg-color);
+    border-right: 1px solid var(--border-color);
+}
+.profile-card {
+    text-align: center;
+}
+
+.avatar {
+    width: 100px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+.profile-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.profile-card p {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.member-since {
+    margin: 0.5rem 0 1rem;
+}
+
+.profile-followers {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.profile-links a {
+    display: block;
+    margin: 0.5rem 0;
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+}
+
+.profile-links a:hover {
+    color: var(--hover-color);
+}
+
+.main-content {
+    flex: 1;
+    padding: 2rem;
+}
+
+.tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.tabs a {
+    margin-right: 2rem;
+    padding: 0.5rem 0;
+    text-decoration: none;
+    color: #444;
+    border-bottom: 3px solid transparent;
+    transition: border-bottom 0.3s ease, color 0.3s ease;
+}
+
+.tabs a.active {
+    border-bottom-color: var(--primary-color);
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.no-posts {
+    text-align: center;
+    padding: 3rem 1rem;
+}
+
+.bear-icon {
+    width: 80px;
+    margin-bottom: 1rem;
+}
+
+.no-posts h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+}
+
+.no-posts p {
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+.btn-explore {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.btn-explore:hover {
+    background-color: var(--hover-color);
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .tabs {
+        gap: 1rem;
+    }
+}

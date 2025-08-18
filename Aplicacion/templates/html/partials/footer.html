@@ -1,0 +1,94 @@
+<!-- ======= FOOTER MEJORADO ======= -->
+{% load static %}
+
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- Explora Rutas -->
+    <section class="footer-column">
+      <h3><i class="fas fa-route"></i> Explora Rutas</h3>
+      <ul>
+        <li><i class="fas fa-map-marker-alt"></i> Mapa de Popayán</li>
+        <li><i class="fas fa-camera"></i> Explora por fotos</li>
+        <li><i class="fas fa-hiking"></i> Actividades</li>
+      </ul>
+    </section>
+
+    <!-- Acerca de -->
+    <section class="footer-column">
+      <h3><i class="fas fa-info-circle"></i> Acerca de</h3>
+      <ul>
+        <li><i class="fas fa-users"></i> Sobre nosotros</li>
+        <li><i class="fas fa-hand-holding-heart"></i> Donantes</li>
+        <li><i class="fas fa-life-ring"></i> Centro de ayuda</li>
+      </ul>
+    </section>
+
+    <!-- Contacto -->
+    <section class="footer-column">
+      <h3><i class="fas fa-envelope"></i> Contacto</h3>
+      <ul>
+        <li><i class="fas fa-address-book"></i> Contacto</li>
+        <li><i class="fas fa-headset"></i> Soporte</li>
+        <li><i class="fas fa-handshake"></i> Colaboraciones</li>
+      </ul>
+    </section>
+
+    <!-- Redes Sociales -->
+    <section class="footer-column">
+      <h3><i class="fas fa-share-alt"></i> Redes Sociales</h3>
+      <ul>
+        <li>
+          <a class="footer-link" href="https://www.facebook.com/profile.php?id=61578380357745" target="_blank" rel="noopener">
+            <i class="fab fa-facebook"></i> Facebook
+          </a>
+        </li>
+        <li>
+          <a class="footer-link" href="https://www.instagram.com/app.walk/" target="_blank" rel="noopener">
+            <i class="fab fa-instagram"></i> Instagram
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Descargas / QR -->
+    <section class="footer-column footer-qr">
+      <h3><i class="fas fa-download"></i> Descargas</h3>
+      <p>¡Descárgala ya!</p>
+      <!-- Canvas donde se generará el QR -->
+      <canvas id="qrCanvas"></canvas>
+      <p><i class="fas fa-qrcode"></i> Escanéame</p>
+    </section>
+
+  </div>
+
+  <!-- Footer bottom -->
+  <div class="footer-bottom">
+    <p>© 2025 Walk App | Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<!-- Script QR dinámico -->
+<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const qrCanvas = document.getElementById("qrCanvas");
+    const qrURL = "https://via.placeholder.com/300x200.png?text=No+disponible+aun";
+
+    if (qrCanvas) {
+      QRCode.toCanvas(qrCanvas, qrURL, { width: 120 }, (error) => {
+        if (error) console.error("Error generando QR:", error);
+      });
+    }
+  });
+</script>
+
+<!-- CSS mínimo para QR -->
+<style>
+  .footer-qr canvas {
+    display: block;
+    margin: 10px 0;
+    width: 120px;
+    height: 120px;
+  }
+</style>

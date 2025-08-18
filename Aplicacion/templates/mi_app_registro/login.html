@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="{% static 'css/login/login.css' %}">
+</head>
+<body>
+
+<main class="login-container">
+    <section class="login-box">
+
+        <header class="login-header">
+            <img src="{% static 'images/imagenes/logo.jpg' %}" alt="Logo de Walk App" class="logo">
+            <h1>Iniciar Sesión</h1>
+        </header>
+
+        <form method="post" class="login-form" autocomplete="off" aria-label="Formulario de inicio de sesión">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="id_username">Usuario</label>
+                {{ form.username }}
+            </div>
+
+            <div class="form-group">
+                <label for="id_password">Contraseña</label>
+                {{ form.password }}
+            </div>
+
+            <button type="submit" class="btn-submit">Iniciar Sesión</button>
+
+            <div class="forgot-password">
+                <a href="{% url 'password_reset' %}">¿Olvidaste tu contraseña?</a>
+            </div>
+        </form>
+
+        <footer class="login-footer">
+            <p>¿No tienes cuenta? <a href="{% url 'registro' %}">Regístrate aquí</a></p>
+        </footer>
+    </section>
+</main>
+
+{% if messages %}
+<div id="errorModal" class="modal">
+    <div class="modal-content">
+        {% for message in messages %}
+        <p class="{{ message.tags }}">{{ message }}</p>
+        {% endfor %}
+        <button class="close-btn" onclick="closeModal()">Cerrar</button>
+    </div>
+</div>
+{% endif %}
+
+<script>
+    function closeModal() {
+        document.getElementById("errorModal").style.display = "none";
+    }
+
+    // Mostrar el modal automáticamente si existe
+    window.onload = function() {
+        var modal = document.getElementById("errorModal");
+        if (modal) {
+            modal.style.display = "block";
+        }
+    };
+</script>
+
+</body>
+</html>

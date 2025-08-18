@@ -1,0 +1,173 @@
+{% extends 'html/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/rutas/detalle.css' %}">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+{% endblock %}
+
+{% block title %}{{ ruta.nombre_ruta }} - Detalles{% endblock %}
+
+{% block content %}
+<div class="detalle-container container py-4">
+  <h1>{{ ruta.nombre_ruta }}</h1>
+
+  <section class="info-basica mb-4">
+    <div class="info-item">
+      <i class="fas fa-align-left"></i>
+      <div class="info-texto">
+        <strong>Descripción</strong>
+        <p>{{ ruta.descripcion }}</p>
+      </div>
+    </div>
+    <div class="info-item">
+      <i class="fas fa-ruler-horizontal"></i>
+      <div class="info-texto">
+        <strong>Longitud</strong>
+        <p>{{ ruta.longitud }} km</p>
+      </div>
+    </div>
+    <div class="info-item">
+      <i class="fas fa-mountain"></i>
+      <div class="info-texto">
+        <strong>Dificultad</strong>
+        <p>{{ ruta.dificultad }}</p>
+      </div>
+    </div>
+    <div class="info-item">
+      <i class="fas fa-map-marker-alt"></i>
+      <div class="info-texto">
+        <strong>Ubicación</strong>
+        <p>{{ ruta.ubicacion }}</p>
+      </div>
+    </div>
+    <div class="info-item">
+      <i class="fas fa-stopwatch"></i>
+      <div class="info-texto">
+        <strong>Duración estimada</strong>
+        <p>3 horas</p>
+      </div>
+    </div>
+    <div class="info-item">
+      <i class="fas fa-road"></i>
+      <div class="info-texto">
+        <strong>Tipo de terreno</strong>
+        <p>Mixto (tierra, piedra, pasto)</p>
+      </div>
+    </div>
+    <div class="info-item">
+      <i class="fas fa-tree"></i>
+      <div class="info-texto">
+        <strong>Altura promedio</strong>
+        <p>1800 m.s.n.m</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="recomendaciones mb-4">
+    <h2><i class="fas fa-lightbulb"></i> Recomendaciones</h2>
+    <ul>
+      <li><i class="fas fa-check-circle"></i> Llevar suficiente agua.</li>
+      <li><i class="fas fa-check-circle"></i> Usar protector solar y sombrero.</li>
+      <li><i class="fas fa-check-circle"></i> Llevar calzado adecuado para senderismo.</li>
+      <li><i class="fas fa-check-circle"></i> No dejar basura en el camino.</li>
+      <li><i class="fas fa-check-circle"></i> Respetar la flora y fauna del lugar.</li>
+    </ul>
+  </section>
+
+  {% if user.is_authenticated %}
+    <section class="acciones mb-4">
+      {% if es_favorita %}
+        <a href="{% url 'quitar_favorita' ruta.id %}" class="btn btn-danger">
+          <i class="fas fa-times-circle"></i> Quitar de Favoritas
+        </a>
+      {% else %}
+        <a href="{% url 'marcar_favorita' ruta.id %}" class="btn btn-success">
+          <i class="fas fa-star"></i> Marcar como Favorita
+        </a>
+      {% endif %}
+      <a href="{% url 'rutas' %}" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> Volver a la Lista de Rutas
+      </a>
+    </section>
+  {% else %}
+    <p><a href="{% url 'login' %}">Inicia sesión</a> para marcar esta ruta como favorita.</p>
+  {% endif %}
+
+  {% if request.user.is_superuser %}
+    <form action="{% url 'eliminar_ruta' ruta.id %}" method="post" class="mb-4 d-inline">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-outline-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar esta ruta?');">
+        <i class="fas fa-trash-alt"></i> Eliminar Ruta
+      </button>
+    </form>
+  {% endif %}
+
+  <section class="carrusel-ruta my-5">
+    <h2 class="text-center mb-4"><i class="fas fa-images"></i> Exploración Visual</h2>
+    <div id="carouselRuta" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner rounded shadow">
+        <div class="carousel-item active">
+          <img src="{% static 'img/rutas/ruta1.jpg' %}" class="d-block w-100" alt="Imagen de la ruta">
+          <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-2">
+            <h5>Vista Panorámica</h5>
+            <p>Un vistazo a los paisajes que te esperan en esta aventura.</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'img/rutas/ruta2.jpg' %}" class="d-block w-100" alt="Naturaleza en el sendero">
+          <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-2">
+            <h5>Flora Local</h5>
+            <p>Disfruta de la biodiversidad única del camino.</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'img/rutas/ruta3.jpg' %}" class="d-block w-100" alt="Rocas en la cima">
+          <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-2">
+            <h5>Retos del Terreno</h5>
+            <p>Un terreno mixto que desafía tus pasos y fortalece tu espíritu.</p>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselRuta" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselRuta" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Siguiente</span>
+      </button>
+    </div>
+  </section>
+
+  <section class="mapa">
+    <h2><i class="fas fa-map"></i> Mapa de la Ruta</h2>
+    <div id="map" style="height: 500px;"></div>
+  </section>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const coordenadasRuta = [
+      [2.444814, -76.614739],
+      [2.445200, -76.615500],
+      [2.445800, -76.616300]
+    ];
+
+    const mapa = L.map('map').setView(coordenadasRuta[0], 15);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(mapa);
+
+    const ruta = L.polyline(coordenadasRuta, { color: 'blue' }).addTo(mapa);
+    mapa.fitBounds(ruta.getBounds());
+
+    L.marker(coordenadasRuta[0]).addTo(mapa).bindPopup("Inicio").openPopup();
+    L.marker(coordenadasRuta[coordenadasRuta.length - 1]).addTo(mapa).bindPopup("Fin");
+  </script>
+{% endblock %}

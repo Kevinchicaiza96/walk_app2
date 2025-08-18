@@ -1,0 +1,107 @@
+{% load static %}
+<header class="header-wrapper">
+
+  <!-- === OVERLAY BUSCADOR === -->
+  <div id="buscador-overlay" class="buscador-overlay">
+    <form method="get" action="{% url 'buscar_rutas' %}">
+      <input type="text" name="q" placeholder="Buscar rutas..." aria-label="Buscar rutas" autofocus>
+      <button type="submit" aria-label="Buscar"><i class="fas fa-search"></i></button>
+      <button type="button" onclick="ocultarBuscador()" aria-label="Cerrar"><i class="fas fa-times"></i></button>
+    </form>
+  </div>
+
+  <!-- === NAVBAR PRINCIPAL === -->
+  <nav class="main-nav" role="navigation" aria-label="Menú principal">
+    <div class="nav-brand">
+      <img src="{% static '/images/imagenes/logo.jpg' %}" alt="Logo de Walk App" class="nav-logo"/>
+      <h1 class="nav-title">Walk App</h1>
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="{% url 'home' %}">Inicio</a></li>
+      <li><a href="{% url 'comunidad' %}">Comunidad</a></li>
+      <li><a href="{% url 'juegos' %}">Juegos</a></li>
+      <li><a href="{% url 'rutas' %}">Rutas</a></li>
+      <li><a href="{% url 'ranking' %}">Ranking</a></li>
+
+      {% if user.is_authenticated and user.is_superuser %}
+        <li><a href="{% url 'admin_dashboard' %}">Panel Admin</a></li>
+        <li><a href="{% url 'admin_usuarios' %}">Usuarios</a></li>
+        <li><a href="{% url 'admin_rutas' %}">Gestionar Rutas</a></li>
+        <li><a href="{% url 'admin_reportes' %}">Reportes</a></li>
+        <li><a href="{% url 'admin_estadisticas' %}">Estadísticas</a></li>
+      {% endif %}
+    </ul>
+
+    <!-- === BÚSQUEDA Y USUARIO === -->
+    <div class="nav-right">
+      <button class="nav-icon-button" onclick="mostrarBuscador()" aria-label="Abrir buscador">
+        <i class="fas fa-search"></i>
+      </button>
+
+      {% if user.is_authenticated %}
+        <a href="{% url 'perfil_usuario' %}" class="btn-profile-icon" aria-label="Perfil de usuario">
+          <i class="fas fa-user-circle"></i>
+        </a>
+        <form action="{% url 'logout' %}" method="post">
+          {% csrf_token %}
+          <button type="submit" class="btn-logout">Cerrar Sesión</button>
+        </form>
+      {% else %}
+        <a href="{% url 'registro' %}" class="btn-login">Registrarse</a>
+        <a href="{% url 'login' %}" class="btn-login">Iniciar Sesión</a>
+      {% endif %}
+    </div>
+
+    <!-- === MENÚ HAMBURGUESA === -->
+    <button class="hamburger" id="openMenu" aria-label="Abrir menú móvil">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- === MENÚ MÓVIL === -->
+  <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+    <div class="menu-header">
+      <img src="{% static '/images/imagenes/logo.jpg' %}" alt="Logo de Walk App" class="nav-logo" />
+      <h2 class="mobile-menu-titulo">WALK APP</h2>
+      <button id="closeMenu" class="close-btn" aria-label="Cerrar menú móvil">&times;</button>
+    </div>
+
+    <nav class="mobile-links">
+      <a href="{% url 'home' %}">Inicio</a>
+      <a href="{% url 'comunidad' %}">Comunidad</a>
+      <a href="{% url 'juegos' %}">Juegos</a>
+      <a href="{% url 'rutas' %}">Rutas</a>
+      <a href="{% url 'ranking' %}">Ranking</a>
+
+      {% if user.is_authenticated and user.is_superuser %}
+        <a href="{% url 'admin_dashboard' %}">Panel Admin</a>
+        <a href="{% url 'admin_usuarios' %}">Usuarios</a>
+        <a href="{% url 'admin_rutas' %}">Gestionar Rutas</a>
+        <a href="{% url 'admin_reportes' %}">Reportes</a>
+        <a href="{% url 'admin_estadisticas' %}">Estadísticas</a>
+      {% endif %}
+
+      {% if user.is_authenticated %}
+        <a href="{% url 'perfil_usuario' %}" class="mobile-menu-item">
+          <i class="fas fa-user-circle"></i> Mi Perfil
+        </a>
+        <form action="{% url 'logout' %}" method="post">
+          {% csrf_token %}
+          <button type="submit" class="btn-login mobile-menu-item">Cerrar Sesión</button>
+        </form>
+      {% else %}
+        <a href="{% url 'registro' %}" class="btn-login mobile-menu-item">Registrarse</a>
+        <a href="{% url 'login' %}" class="btn-login mobile-menu-item">Iniciar Sesión</a>
+      {% endif %}
+    </nav>
+
+    <!-- BUSCADOR MÓVIL -->
+    <form method="get" action="{% url 'buscar_rutas' %}" class="mobile-search">
+      <input type="text" name="q" placeholder="Buscar rutas..." />
+      <button type="submit"><i class="fas fa-search"></i></button>
+    </form>
+  </div>
+</header>
+
+<script src="{% static 'js/navbar.js' %}"></script>

@@ -1,0 +1,219 @@
+/* ================= 
+RESET BÁSICO Y FUENTE GLOBAL
+================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    margin-top: 20px;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ================= 
+PANEL DE ADMINISTRACIÓN 
+================= */
+.admin-panel {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    background: #fefefe;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* ================= 
+BIENVENIDA
+================= */
+.bienvenida {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.bienvenida h1 {
+    font-size: 2.2rem;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.bienvenida p {
+    font-size: 1rem;
+    color: #7f8c8d;
+}
+
+/* Responsive para bienvenida */
+@media (max-width: 768px) {
+    .bienvenida h1 {
+        font-size: 1.6rem;
+    }
+}
+
+/* ================= 
+GRID DE CARDS 
+================= */
+.admin-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 30px;
+}
+
+.admin-card {
+    background-color: #ffffff;
+    border: 2px solid #ecf0f1;
+    border-radius: 12px;
+    padding: 25px;
+    text-decoration: none;
+    color: #2c3e50;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.25s ease-in-out;
+    text-align: center;
+}
+
+.admin-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.admin-card p {
+    font-size: 0.95rem;
+    color: #7f8c8d;
+}
+
+.admin-card:hover {
+    border-color: #3498db;
+    box-shadow: 0 6px 16px rgba(52, 152, 219, 0.2);
+    transform: translateY(-4px);
+    color: #2980b9;
+}
+
+/* Responsive para cards */
+@media (max-width: 768px) {
+    .admin-card h2 {
+        font-size: 1.2rem;
+    }
+
+    .admin-card p {
+        font-size: 0.9rem;
+    }
+}
+
+/* ========================= 
+    USUARIOS
+========================= */
+
+/* Título de la sección de usuarios */
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    color: #34495e;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Encabezado */
+thead {
+    background: #2c3e50;
+    color: white;
+}
+
+thead th {
+    padding: 15px 20px;
+    text-align: left;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Filas del cuerpo */
+tbody tr {
+    border-bottom: 1px solid #ecf0f1;
+    transition: background-color 0.2s ease;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+tbody td {
+    padding: 14px 20px;
+    color: #2c3e50;
+    font-size: 0.95rem;
+}
+
+/* Si no hay usuarios */
+tbody tr td[colspan] {
+    text-align: center;
+    color: #7f8c8d;
+    font-style: italic;
+}
+
+/* Responsive para tabla */
+@media (max-width: 768px) {
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    thead {
+        display: none;
+    }
+
+    tbody tr {
+        margin-bottom: 15px;
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    tbody td {
+        padding: 10px;
+        text-align: right;
+        position: relative;
+    }
+
+    tbody td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        font-weight: bold;
+        color: #2c3e50;
+        text-transform: capitalize;
+    }
+}
+
+/* ====================== 
+    ESTADÍSTICAS 
+======================= */
+.charts-container {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+}
+
+canvas {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 1rem;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Responsive para gráficas */
+@media (max-width: 768px) {
+    .charts-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+}

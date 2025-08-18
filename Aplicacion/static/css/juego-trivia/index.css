@@ -1,0 +1,326 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@100;200;300;400;500;600;700;800&display=swap');
+* {
+    box-sizing: border-box;
+    margin: 0;
+    margin-top: 20px;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  font-family: 'Roboto Condensed', sans-serif;
+  overflow-x: hidden;
+}
+
+
+.game-wrapper {
+  margin-top: 80px;
+  min-height: 100vh;
+  width: 100%;
+  background-image: url("/static/images/fotos/ilustracionsenderismo.webp");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.container {
+  width: 100%;
+  max-width: 500px;
+  background: linear-gradient(#2D5E52, #8d6e63);
+  padding: 20px;
+  border-radius: 25px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 1;
+}
+
+header {
+  background-color: #2D5E52;
+  color: #fff;
+  font-size: 12px;
+  padding: 10px;
+  border-radius: 50px;
+  box-shadow: 3px 3px 5px #1b4b42;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+header h1 {
+  width: 100%;
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 5px;
+}
+
+.inicio {
+  text-align: center;
+  padding-top: 40px;
+  color: #fff;
+  font-size: 20px;
+}
+
+.inicio input {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  margin: 30px auto 10px auto;
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 50px;
+  border: 0;
+  text-align: center;
+}
+
+.btn {
+  background-color: #2D5E52;
+  color: #fff;
+  border: 0;
+  padding: 10px 20px;
+  font-weight: bold;
+  border-radius: 50px;
+  margin-top: 3px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 16px;
+  transition: .3s;
+}
+
+.btn:hover {
+  background-color: #1b4b42;
+}
+
+.puntaje, .jugador {
+  display: flex;
+  align-items: center;
+}
+
+.puntaje img, .jugador img {
+  width: 40px;
+  background-color: #2D5E52;
+  border-radius: 50%;
+  border: 2px solid #ffeb3b;
+}
+
+.puntaje .puntos {
+  background-color: #2D5E52;
+  padding: 5px 10px;
+  border-radius: 0 30px 30px 0;
+  margin-left: -5px;
+  font-size: 16px;
+}
+
+.jugador .nombre {
+  background-color: #2D5E52;
+  padding: 5px 10px;
+  border-radius: 30px 0 0 30px;
+  margin-right: -5px;
+  font-size: 16px;
+}
+
+.salir {
+  background-color: #e1ebe1;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  text-decoration: none;
+  z-index: 2;
+}
+
+.salir a {
+  text-decoration: none;
+  color: #2D5E52;
+  font-weight: bold;
+}
+
+.categorias {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 30px;
+  justify-content: center;
+}
+
+.categoria {
+  background-color: #2D5E52;
+  height: 90px;
+  border-radius: 50px;
+  color: #fff;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: 20px;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform .3s, box-shadow .3s;
+}
+
+.categoria .foto-categoria {
+  width: 70px;
+  position: absolute;
+  left: 50%;
+  top: -35px;
+  transform: translateX(-50%);
+  transition: .3s;
+}
+
+.categoria:hover {
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+  transform: translateY(-5px);
+}
+
+.categoria:hover .foto-categoria {
+  scale: 1.2;
+}
+
+.juego {
+  color: #fff;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.juego .pregunta {
+  margin: 10px 0 30px 0;
+  font-size: 20px;
+}
+
+.juego .opcion {
+  display: block;
+  width: 90%;
+  margin: auto;
+  border: 0;
+  font-size: 18px;
+  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.correcta {
+  background-color: #66bb6a;
+}
+
+.incorrecta {
+  background-color: #d32f2f;
+}
+
+.no-events {
+  pointer-events: none;
+}
+
+.efecto {
+  animation: 1s zoom;
+}
+
+@keyframes zoom {
+  0% { transform: scale(1); color: #fff; font-weight: bold; }
+  40%, 60% { transform: scale(1.3); color: #ffeb3b; }
+  100% { transform: scale(1); color: #fff; font-weight: normal; }
+}
+
+.desabilitada {
+  filter: grayscale(.9) opacity(.7);
+}
+
+.final {
+  margin-top: 30px;
+  text-align: center;
+  color: #fff;
+}
+
+.final .medalla {
+  position: relative;
+  width: 100px;
+  margin: 20px auto;
+}
+
+.final .medalla .nombre {
+  position: absolute;
+  top: 35px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.final img {
+  display: block;
+  width: 100px;
+  margin: auto;
+}
+
+.final .puntaje-final {
+  font-size: 50px;
+  color: #fff;
+  margin: 10px 0;
+  display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  .categoria {
+    height: 80px;
+  }
+
+  .categoria .foto-categoria {
+    width: 60px;
+  }
+
+  .btn, .salir {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  .inicio input {
+    font-size: 14px;
+  }
+
+  .juego .pregunta {
+    font-size: 18px;
+  }
+
+  .juego .opcion {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  header h1 {
+    font-size: 1rem;
+  }
+
+  .salir {
+    top: 10px;
+    left: 10px;
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+
+  .final .puntaje-final {
+    font-size: 36px;
+  }
+}

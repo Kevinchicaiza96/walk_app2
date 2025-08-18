@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Usuario</title>
+
+    <!-- Estilos principales -->
+    <link rel="stylesheet" href="{% static 'css/login/registro.css' %}">
+
+    <!-- Estilos del modal reutilizable -->
+    <link rel="stylesheet" href="{% static 'css/componentes/modal.css' %}">
+</head>
+<body>
+
+<main class="contenedor" role="main">
+    <section class="formulario" aria-labelledby="titulo-registro" role="form">
+
+        <form method="post" novalidate>
+            {% csrf_token %}
+
+            <!-- Logo de la aplicación -->
+            <img src="{% static 'images/imagenes/logo.jpg' %}" alt="Logo de Walk App" class="logo" loading="lazy">
+
+            <!-- Título principal del formulario -->
+            <h1 id="titulo-registro">Registro de Usuario</h1>
+
+            <!-- Campos del formulario renderizados manualmente -->
+            <div class="campos-formulario">
+                <label for="{{ form.username.id_for_label }}">Nombre de usuario:</label>
+                {{ form.username }}
+
+                <label for="{{ form.email.id_for_label }}">Correo electrónico:</label>
+                {{ form.email }}
+
+                <label for="{{ form.password1.id_for_label }}">Contraseña:</label>
+                {{ form.password1 }}
+
+                <label for="{{ form.password2.id_for_label }}">Confirmar contraseña:</label>
+                {{ form.password2 }}
+            </div>
+
+            <!-- Botón de registro -->
+            <button type="submit" class="btn-registro" aria-label="Registrarse en Walk App">Registrarse</button>
+
+            <!-- Enlaces adicionales -->
+            <nav class="enlaces-secundarios">
+                <p><a href="{% url 'login' %}">¿Ya tienes cuenta? Inicia sesión</a></p>
+            </nav>
+        </form>
+    </section>
+</main>
+
+<!-- Modal de errores -->
+{% if form.errors or form.non_field_errors %}
+<div id="modalErrores" class="modal">
+    <div class="modal-content">
+        <h2>Errores en el formulario</h2>
+        <ul>
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <li><strong>{{ field.label }}:</strong> {{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                <li><strong>Error:</strong> {{ error }}</li>
+            {% endfor %}
+        </ul>
+        <button class="close-btn" onclick="cerrarModal()">Cerrar</button>
+    </div>
+</div>
+{% endif %}
+
+<!-- Scripts -->
+<script>
+    // Mostrar el modal si hay errores
+    window.onload = function() {
+        var modal = document.getElementById('modalErrores');
+        if (modal) {
+            modal.style.display = 'block';
+        }
+    };
+
+    function cerrarModal() {
+        document.getElementById('modalErrores').style.display = 'none';
+    }
+</script>
+
+</body>
+</html>
