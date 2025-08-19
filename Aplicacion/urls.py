@@ -31,8 +31,6 @@ urlpatterns = [
     path('rutas/<int:ruta_id>/favorito/', views.marcar_favorita, name='marcar_favorita'),
     path('rutas/<int:ruta_id>/quitar_favorito/', views.quitar_favorita, name='quitar_favorita'),
 
-    
-
     # ============================
     # VISTAS DE ADMINISTRADOR
     # ============================

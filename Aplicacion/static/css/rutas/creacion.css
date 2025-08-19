@@ -1,48 +1,45 @@
-/* ========== RESET ========== */
+/* ================= RESET ================= */
 * {
     box-sizing: border-box;
     margin: 0;
-    margin-top: 20px;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-/* ========== BODY ========== */
+
 body {
-    background-image: url(../../images/fotos/Wallpaper_Rutas.png);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
+    background: url(../../images/fotos/Wallpaper_Rutas.png) center/cover no-repeat fixed;
     background-color: #f5f7fa;
-    margin-top: 7%;
+    margin-top: 5%;
     color: #333;
 }
 
-/* ========== FORM CONTAINER ========== */
+/* ================= FORM CONTAINER ================= */
 .form-container {
     max-width: 700px;
     margin: auto;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.95);
     padding: 2.5rem;
     border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.15);
 }
 
 .form-container h1 {
-    font-size: 2rem;
-    color: #1a1a1a;
-    margin-bottom: 1.5rem;
+    font-size: 2.2rem;
+    color: #00ff37;
+    margin-bottom: 2rem;
     text-align: center;
 }
 
-/* ========== FORM ELEMENTS ========== */
-.ruta-form p {
-    margin-bottom: 1.5rem;
-}
-
+/* ================= FORM ELEMENTS ================= */
 .ruta-form label {
     display: block;
-    font-weight: bold;
+    font-weight: 600;
     margin-bottom: 0.5rem;
     color: #444;
 }
@@ -53,49 +50,52 @@ body {
 .ruta-form textarea,
 .ruta-form select {
     width: 100%;
-    padding: 0.75rem;
+    padding: 0.75rem 1rem;
     border: 1px solid #ccc;
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 1rem;
     background-color: #f9f9f9;
-    transition: border 0.2s ease;
+    transition: all 0.3s ease;
 }
 
 .ruta-form input:focus,
 .ruta-form textarea:focus,
 .ruta-form select:focus {
     border-color: #00a86b;
+    box-shadow: 0 0 5px rgba(0, 168, 107, 0.4);
     outline: none;
 }
 
-/* ========== BOTONES ========== */
+/* ================= BOTONES ================= */
 .form-buttons {
     display: flex;
     justify-content: center;
     gap: 1rem;
-    margin-top: 2rem;
+    margin-top: 2.5rem;
 }
 
 .btn {
-    padding: 0.8rem 1.5rem;
+    padding: 0.85rem 1.6rem;
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
     font-size: 1rem;
     cursor: pointer;
     text-decoration: none;
     color: #fff;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .btn-primary {
-    background-color: #00a86b;
+    background-color: #00ff37;
 }
 
 .btn-primary:hover {
     background-color: #008c59;
+    transform: translateY(-2px);
 }
 
 .btn-secondary {
@@ -104,15 +104,17 @@ body {
 
 .btn-secondary:hover {
     background-color: #333;
+    transform: translateY(-2px);
 }
 
-/* ========== ERRORES ========== */
+/* ================= ERRORES ================= */
 .form-errors {
     background-color: #ffe6e6;
     border-left: 5px solid #e53935;
     padding: 1rem;
     margin-bottom: 1.5rem;
     border-radius: 10px;
+    animation: fadeIn 0.4s ease;
 }
 
 .form-errors h3 {
@@ -126,29 +128,18 @@ body {
     color: #b71c1c;
 }
 
-/* ========== RESPONSIVE ========== */
-@media (max-width: 600px) {
-    .form-buttons {
-        flex-direction: column;
-    }
-
-    .btn {
-        width: 100%;
-        justify-content: center;
-    }
-}
-
-/* Estilo para el botón de imagen personalizado */
+/* ================= FILE INPUT PERSONALIZADO ================= */
 .file-upload {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     padding: 0.7rem 1.2rem;
     background-color: #007bff;
     color: #fff;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
     font-weight: 500;
     font-size: 0.95rem;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .file-upload:hover {
@@ -164,4 +155,22 @@ body {
     margin-left: 1rem;
     font-style: italic;
     color: #555;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 600px) {
+    .form-buttons {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* ================= ANIMACIONES ================= */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
 }

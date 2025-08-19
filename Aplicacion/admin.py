@@ -5,11 +5,10 @@ from .models import UsuarioPersonalizado, Ruta, RutaRecorrida, UserRutaFavorita
 # ===========================
 # ADMIN: USUARIO PERSONALIZADO
 # ===========================
-
 @admin.register(UsuarioPersonalizado)
 class UsuarioPersonalizadoAdmin(UserAdmin):
     model = UsuarioPersonalizado
-    list_display = ('username', 'email', 'is_staff', 'is_active')
+    list_display = ('username', 'email', 'is_staff', 'is_active', 'is_superuser')
     list_filter = ('is_staff', 'is_active', 'is_superuser')
     search_fields = ('username', 'email')
     ordering = ('id',)
@@ -28,9 +27,26 @@ class UsuarioPersonalizadoAdmin(UserAdmin):
     )
 
 # ===========================
-# ADMIN: OTROS MODELOS
+# ADMIN: RUTA
 # ===========================
+@admin.register(Ruta)
+class RutaAdmin(admin.ModelAdmin):
+    list_display = ('nombre_ruta', 'vistas', 'dificultad', 'longitud', 'creada_por', 'fecha_creacion')
+    list_filter = ('dificultad',)
+    search_fields = ('nombre_ruta', 'descripcion', 'ubicacion')
 
-admin.site.register(Ruta)
-admin.site.register(UserRutaFavorita)
-admin.site.register(RutaRecorrida)
+# ===========================
+# ADMIN: RUTA FAVORITA
+# ===========================
+@admin.register(UserRutaFavorita)
+class UserRutaFavoritaAdmin(admin.ModelAdmin):
+    list_display = ('usuario', 'ruta', 'fecha_agregado')
+    search_fields = ('usuario__username', 'ruta__nombre_ruta')
+
+# ===========================
+# ADMIN: RUTA RECORRIDA
+# ===========================
+@admin.register(RutaRecorrida)
+class RutaRecorridaAdmin(admin.ModelAdmin):
+    list_display = ('usuario', 'ruta', 'fecha')
+    search_fields = ('usuario__username', 'ruta__nombre_ruta')

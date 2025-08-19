@@ -1,33 +1,25 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import UsuarioPersonalizado, Ruta
-from .models import Publicacion, Comentario
+from .models import UsuarioPersonalizado, Ruta, Publicacion, Comentario
 
-# ============================
-# FORMULARIO DE REGISTRO
-# ============================
+# Registro
 class RegistroUsuarioForms(UserCreationForm):
+    email = forms.EmailField(required=True, label="Correo electrónico")
     class Meta:
         model = UsuarioPersonalizado
-        fields = ['username', 'email']  # campos reales del modelo personalizado
-
+        fields = ['username', 'email']
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['username'].label = 'Nombre de usuario'
-        self.fields['email'].label = 'Correo electrónico'
         self.fields['password1'].label = 'Contraseña'
         self.fields['password2'].label = 'Confirmar contraseña'
 
-# ============================
-# FORMULARIO DE LOGIN
-# ============================
+# Login
 class LoginForm(forms.Form):
-    username = forms.CharField(label='Nombre de usuario', max_length=100)
-    password = forms.CharField(label='Contraseña', widget=forms.PasswordInput)
+    username = forms.CharField(label='Nombre de usuario', max_length=100, required=True)
+    password = forms.CharField(label='Contraseña', widget=forms.PasswordInput, required=True)
 
-# ============================
-# FORMULARIO DE CREACIÓN DE RUTA
-# ============================
+# Crear Rutas
 class RutaForm(forms.ModelForm):
     class Meta:
         model = Ruta
@@ -38,16 +30,18 @@ class RutaForm(forms.ModelForm):
             'coordenadas_inicio_lat', 'coordenadas_inicio_lon',
             'coordenadas_fin_lat', 'coordenadas_fin_lon'
         ]
+        widgets = {
+            'descripcion': forms.Textarea(attrs={'rows': 3}),
+            'puntos_interes': forms.Textarea(attrs={'rows': 2}),
+        }
 
-#==================
-# COMUNIDAD
-#==================
+# Comunidad
 class PublicacionForm(forms.ModelForm):
     class Meta:
         model = Publicacion
         fields = ['ruta', 'comentario', 'imagen']
         widgets = {
-            'comentario': forms.Textarea(attrs={'rows': 3}),
+            'comentario': forms.Textarea(attrs={'rows': 3, 'placeholder': 'Escribe tu publicación...'}),
         }
 
 class ComentarioForm(forms.ModelForm):
@@ -55,5 +49,5 @@ class ComentarioForm(forms.ModelForm):
         model = Comentario
         fields = ['texto']
         widgets = {
-            'texto': forms.TextInput(attrs={'placeholder': 'Añadir un comentario...'}),
+            'texto': forms.TextInput(attrs={'placeholder': 'Añadir un comentario...', 'class': 'comentario-input'}),
         }

@@ -1,83 +1,90 @@
+{% extends 'html/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Crear Nueva Ruta</title>
-    <link rel="stylesheet" href="{% static 'css/rutas/creacion.css' %}">
-    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-</head>
-<body>
-    {% include 'html/partials/navbar.html' %}
 
-    <div class="form-container">
-        <h1><i class="fas fa-map-marked-alt"></i> Crear Nueva Ruta</h1>
+{% block title %}Crear Nueva Ruta{% endblock %}
 
-        {% if form.errors %}
-        <div class="form-errors">
-            <h3><i class="fas fa-exclamation-triangle"></i> Errores en el formulario</h3>
-            <ul>
-                {% for field in form %}
-                    {% for error in field.errors %}
-                        <li><strong>{{ field.label }}:</strong> {{ error }}</li>
-                    {% endfor %}
-                {% endfor %}
-                {% for error in form.non_field_errors %}
-                    <li>{{ error }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-        {% endif %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/rutas/creacion.css' %}">
+<link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+{% endblock %}
 
-        <form method="post" enctype="multipart/form-data" class="ruta-form">
-            {% csrf_token %}
+{% block content %}
+<main class="form-container">
+    <h1 class="form-title">
+        <i class="fas fa-map-marked-alt"></i> Crear Nueva Ruta
+    </h1>
 
-            <!-- Campo personalizado para imagen -->
-            <p>
-                <label for="id_imagen"><i class="fas fa-image"></i> Imagen de la Ruta</label><br>
-                <label class="file-upload">
-                    <i class="fas fa-upload"></i> Seleccionar Imagen
-                    {{ form.imagen }}
-                </label>
-                <span id="file-name">No se ha seleccionado ningún archivo</span>
-            </p>
-
-            <!-- Campos restantes -->
+    {% if form.errors %}
+    <section class="form-errors" role="alert">
+        <h3><i class="fas fa-exclamation-triangle"></i> Errores en el formulario</h3>
+        <ul>
             {% for field in form %}
-                {% if field.name != 'imagen' %}
-                <p>
-                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-                    {{ field }}
-                </p>
-                {% endif %}
+                {% for error in field.errors %}
+                    <li><strong>{{ field.label }}:</strong> {{ error }}</li>
+                {% endfor %}
             {% endfor %}
+            {% for error in form.non_field_errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+    {% endif %}
 
-            <div class="form-buttons">
-                <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-save"></i> Guardar Ruta
-                </button>
-                <a href="{% url 'rutas' %}" class="btn btn-secondary">
-                    <i class="fas fa-times"></i> Cancelar
-                </a>
+    <form method="post" enctype="multipart/form-data" class="ruta-form" novalidate>
+        {% csrf_token %}
+
+        <!-- Campo de imagen personalizado -->
+        <div class="form-group file-input-group">
+            <label for="id_imagen" class="form-label">
+                <i class="fas fa-image"></i> Imagen de la Ruta
+            </label>
+            <div class="custom-file">
+                {{ form.imagen }}
+                <label for="id_imagen" class="file-label">
+                    <i class="fas fa-upload"></i> Seleccionar Imagen
+                </label>
+                <span id="file-name" class="file-name">No se ha seleccionado ningún archivo</span>
             </div>
-        </form>
-    </div>
+        </div>
 
-    {% include 'html/partials/footer.html' %}
+        <!-- Campos restantes -->
+        {% for field in form %}
+            {% if field.name != 'imagen' %}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                {{ field }}
+                {% if field.help_text %}
+                    <small class="form-help">{{ field.help_text }}</small>
+                {% endif %}
+            </div>
+            {% endif %}
+        {% endfor %}
 
-    <!-- Script para mostrar nombre de archivo -->
-    <script>
-        const inputFile = document.getElementById('id_imagen');
-        const fileNameDisplay = document.getElementById('file-name');
+        <!-- Botones -->
+        <div class="form-buttons">
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-save"></i> Guardar Ruta
+            </button>
+            <a href="{% url 'rutas' %}" class="btn btn-secondary">
+                <i class="fas fa-times"></i> Cancelar
+            </a>
+        </div>
+    </form>
+</main>
+{% endblock %}
 
-        inputFile.addEventListener('change', function() {
-            if (inputFile.files.length > 0) {
-                fileNameDisplay.textContent = inputFile.files[0].name;
-            } else {
-                fileNameDisplay.textContent = 'No se ha seleccionado ningún archivo';
-            }
-        });
-    </script>
-</body>
-</html>
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const inputFile = document.getElementById('id_imagen');
+    const fileNameDisplay = document.getElementById('file-name');
+
+    inputFile.addEventListener('change', () => {
+        fileNameDisplay.textContent = inputFile.files.length
+            ? inputFile.files[0].name
+            : 'No se ha seleccionado ningún archivo';
+    });
+});
+</script>
+{% endblock %}
