@@ -2,188 +2,227 @@
 /* VARIABLES GLOBALES             */
 /* ============================== */
 :root {
-    --color-principal: #27ae60;
-    --color-principal-hover: #218838;
-    --color-fondo: #f0f8ff;
-    --color-input-bg: rgba(241, 248, 255, 0.85);
-    --color-input-border: #ccc;
-    --color-input-focus: #28a745;
-    --color-texto: #333;
-    --color-error-text: #dc3545;
-    --color-success-bg: #d4edda;
-    --color-success-text: #155724;
-    --color-success-icon: #28a745;
-    --shadow-principal: 0 6px 20px rgba(0, 0, 0, 0.25);
-    --shadow-img: 0 4px 8px rgba(0, 0, 0, 0.1);
-    --border-radius: 6px;
-    --border-radius-lg: 15px;
-    --font-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --color-principal: #27ae60;
+  --color-principal-hover: #218838;
+  --color-fondo: #f0f8ff;
+  --color-input-bg: rgba(241, 248, 255, 0.85);
+  --color-input-border: #ccc;
+  --color-input-focus: #28a745;
+  --color-texto: #333;
+  --color-error-text: #dc3545;
+
+  /* Estados */
+  --color-success-bg: #d4edda;
+  --color-success-text: #155724;
+  --color-success-icon: #28a745;
+
+  /* Colores Ranking */
+  --color-ranking-gold: #f1c40f;
+  --color-ranking-silver: #bdc3c7;
+  --color-ranking-bronze: #d35400;
+
+  /* Sombras */
+  --shadow-principal: 0 6px 20px rgba(0, 0, 0, 0.25);
+  --shadow-img: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --sombra-suave: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  /* Bordes */
+  --border-radius: 6px;
+  --border-radius-lg: 15px;
+  --borde-suave: 10px;
+
+  /* Tipografía */
+  --font-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ============================== */
+/* BASE / RESET                   */
+/* ============================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-    background-image: url(../images/fotos/Wallpaper_Rutas.png);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
-/* ========================= RESET Y BASE ========================= */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', sans-serif;
+  background-image: url(../images/fotos/Wallpaper_Rutas.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: var(--color-texto);
 }
 
 .ranking-stats-wrapper {
-    max-width: 1200px;
-    margin: auto;
-    padding: 20px;
-    background-color: var(--color-fondo);
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+  background-color: var(--color-fondo);
 }
 
-/* ========================= RANKING MENSUAL ========================= */
+/* ============================== */
+/* RANKING MENSUAL                */
+/* ============================== */
 .ranking-section {
-    margin-bottom: 40px;
+  margin-bottom: 40px;
 }
 
 .ranking-box {
-    background-color: #fff;
-    border-radius: var(--borde-suave);
-    padding: 20px;
-    box-shadow: var(--sombra-suave);
+  background-color: #fff;
+  border-radius: var(--borde-suave);
+  padding: 20px;
+  box-shadow: var(--sombra-suave);
 }
 
 .section-title {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .ranking-list {
-    list-style: none;
+  list-style: none;
 }
 
 .ranking-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 15px;
-    border-bottom: 1px solid #eee;
-    font-size: 1rem;
-    border-radius: var(--borde-suave);
-    margin-bottom: 8px;
-    transition: transform 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+  border-bottom: 1px solid #eee;
+  font-size: 1rem;
+  border-radius: var(--borde-suave);
+  margin-bottom: 8px;
+  transition: transform 0.2s ease;
 }
 
 .ranking-item:hover {
-    transform: translateX(5px);
+  transform: translateX(5px);
 }
 
-.ranking-item.gold { background-color: var(--color-ranking-gold); color: #fff; }
-.ranking-item.silver { background-color: var(--color-ranking-silver); color: #fff; }
-.ranking-item.bronze { background-color: var(--color-ranking-bronze); color: #fff; }
+.ranking-item.gold { 
+  background-color: var(--color-ranking-gold); 
+  color: #fff; 
+}
+.ranking-item.silver { 
+  background-color: var(--color-ranking-silver); 
+  color: #fff; 
+}
+.ranking-item.bronze { 
+  background-color: var(--color-ranking-bronze); 
+  color: #fff; 
+}
 
-/* ========================= ESTADÍSTICAS INTERACTIVAS ========================= */
+/* ============================== */
+/* ESTADÍSTICAS INTERACTIVAS      */
+/* ============================== */
 .stats-section {
-    margin-bottom: 40px;
+  margin-bottom: 40px;
 }
 
 .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-    margin-bottom: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
 }
 
 .stat-card {
-    background-color: #fff;
-    padding: 15px;
-    border-radius: var(--borde-suave);
-    box-shadow: var(--sombra-suave);
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    position: relative;
-}
-
-.stat-card h3 {
-    margin-bottom: 10px;
-}
-
-.stat-card p {
-    margin-bottom: 5px;
-}
-
-.stat-card .footprint-deco {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 1.5rem;
-    opacity: 0.2;
+  position: relative;
+  color: #fff;
+  padding: 20px;
+  border-radius: var(--borde-suave);
+  overflow: hidden;
+  cursor: pointer;
+  background-size: cover;
+  background-position: center;
+  box-shadow: var(--sombra-suave);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .stat-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.stat-card .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4); /* Opacidad del overlay */
+  z-index: 1;
+}
+
+.stat-card h3,
+.stat-card p {
+  position: relative;
+  z-index: 2;
 }
 
 .active-card {
-    border: 2px solid var(--color-principal);
+  border: 2px solid var(--color-principal);
 }
 
-/* ========================= CHART ========================= */
+/* ============================== */
+/* GRÁFICAS                       */
+/* ============================== */
 .chart-container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: var(--borde-suave);
-    box-shadow: var(--sombra-suave);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: var(--borde-suave);
+  box-shadow: var(--sombra-suave);
 }
 
-/* ========================= CAMINATAS RECIENTES ========================= */
+/* ============================== */
+/* CAMINATAS RECIENTES            */
+/* ============================== */
 .hikes-box {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: var(--borde-suave);
-    box-shadow: var(--sombra-suave);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: var(--borde-suave);
+  box-shadow: var(--sombra-suave);
 }
 
 .hikes-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
 }
 
 .hike-card {
-    background-color: #fff;
-    border-radius: var(--borde-suave);
-    overflow: hidden;
-    box-shadow: var(--sombra-suave);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background-color: #fff;
+  border-radius: var(--borde-suave);
+  overflow: hidden;
+  box-shadow: var(--sombra-suave);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .hike-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
 }
 
 .hike-image {
-    width: 100%;
-    height: 160px;
-    object-fit: cover;
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
 }
 
 .hike-info {
-    padding: 10px 15px;
+  padding: 10px 15px;
 }
 
 .hike-title {
-    margin-bottom: 5px;
-    font-size: 1.1rem;
+  margin-bottom: 5px;
+  font-size: 1.1rem;
 }
 
 .hike-tag {
-    display: inline-block;
-    margin-top: 5px;
-    font-size: 0.9rem;
-    color: var(--color-principal);
+  display: inline-block;
+  margin-top: 5px;
+  font-size: 0.9rem;
+  color: var(--color-principal);
 }

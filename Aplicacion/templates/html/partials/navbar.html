@@ -2,21 +2,32 @@
 <header class="header-wrapper">
 
   <!-- === OVERLAY BUSCADOR === -->
-  <div id="buscador-overlay" class="buscador-overlay">
-    <form method="get" action="{% url 'buscar_rutas' %}">
+  <div id="buscador-overlay" class="buscador-overlay" aria-hidden="true">
+    <form method="get" action="{% url 'buscar_rutas' %}" class="buscador-form">
       <input type="text" name="q" placeholder="Buscar rutas..." aria-label="Buscar rutas" autofocus>
-      <button type="submit" aria-label="Buscar"><i class="fas fa-search"></i></button>
-      <button type="button" onclick="ocultarBuscador()" aria-label="Cerrar"><i class="fas fa-times"></i></button>
+      <button type="submit" class="btn-search" aria-label="Buscar">
+        <i class="fas fa-search"></i>
+      </button>
+      <!-- CORREGIDO: botón de cerrar buscador -->
+      <button type="button" onclick="ocultarBuscador()" class="btn-close-search" aria-label="Cerrar buscador">
+        <i class="fas fa-times"></i>
+      </button>
     </form>
   </div>
 
   <!-- === NAVBAR PRINCIPAL === -->
-  <nav class="main-nav" role="navigation" aria-label="Menú principal">
+  <nav class="main-nav" aria-label="Menú principal">
+    
+    <!-- LOGO -->
     <div class="nav-brand">
-      <img src="{% static '/images/imagenes/logo.jpg' %}" alt="Logo de Walk App" class="nav-logo"/>
-      <h1 class="nav-title">Walk App</h1>
-    </div>
+  <div class="brand-link">
+    <img src="{% static 'images/imagenes/logo.jpg' %}" alt="Logo de Walk App" class="nav-logo"/>
+    <span class="nav-title">Walk App</span>
+  </div>
+</div>
 
+
+    <!-- LINKS PRINCIPALES -->
     <ul class="nav-links">
       <li><a href="{% url 'home' %}">Inicio</a></li>
       <li><a href="{% url 'comunidad' %}">Comunidad</a></li>
@@ -25,15 +36,16 @@
       <li><a href="{% url 'ranking' %}">Ranking</a></li>
 
       {% if user.is_authenticated and user.is_superuser %}
+        <li class="nav-divider"></li>
         <li><a href="{% url 'admin_dashboard' %}">Panel Admin</a></li>
         <li><a href="{% url 'admin_usuarios' %}">Usuarios</a></li>
-        <li><a href="{% url 'admin_rutas' %}">Gestionar Rutas</a></li>
+        <li><a href="{% url 'admin_rutas' %}">Rutas</a></li>
         <li><a href="{% url 'admin_reportes' %}">Reportes</a></li>
         <li><a href="{% url 'admin_estadisticas' %}">Estadísticas</a></li>
       {% endif %}
     </ul>
 
-    <!-- === BÚSQUEDA Y USUARIO === -->
+    <!-- DERECHA (BÚSQUEDA Y PERFIL) -->
     <div class="nav-right">
       <button class="nav-icon-button" onclick="mostrarBuscador()" aria-label="Abrir buscador">
         <i class="fas fa-search"></i>
@@ -43,9 +55,9 @@
         <a href="{% url 'perfil_usuario' %}" class="btn-profile-icon" aria-label="Perfil de usuario">
           <i class="fas fa-user-circle"></i>
         </a>
-        <form action="{% url 'logout' %}" method="post">
+        <form action="{% url 'logout' %}" method="post" class="form-logout">
           {% csrf_token %}
-          <button type="submit" class="btn-logout">Cerrar Sesión</button>
+          <button type="submit" class="btn-logout">Salir</button>
         </form>
       {% else %}
         <a href="{% url 'registro' %}" class="btn-login">Registrarse</a>
@@ -53,20 +65,24 @@
       {% endif %}
     </div>
 
-    <!-- === MENÚ HAMBURGUESA === -->
-    <button class="hamburger" id="openMenu" aria-label="Abrir menú móvil">
+    <!-- BOTÓN MENÚ MÓVIL -->
+    <button class="hamburger" id="openMenu" aria-label="Abrir menú móvil" aria-controls="mobileMenu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </nav>
 
   <!-- === MENÚ MÓVIL === -->
   <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+    
+    <!-- HEADER DEL MENÚ -->
     <div class="menu-header">
-      <img src="{% static '/images/imagenes/logo.jpg' %}" alt="Logo de Walk App" class="nav-logo" />
-      <h2 class="mobile-menu-titulo">WALK APP</h2>
+      <img src="{% static 'images/imagenes/logo.jpg' %}" alt="Logo de Walk App" class="nav-logo" />
+      <h2 class="mobile-menu-titulo">Walk App</h2>
+      <!-- CORREGIDO: este se mantiene solo para el menú -->
       <button id="closeMenu" class="close-btn" aria-label="Cerrar menú móvil">&times;</button>
     </div>
 
+    <!-- LINKS -->
     <nav class="mobile-links">
       <a href="{% url 'home' %}">Inicio</a>
       <a href="{% url 'comunidad' %}">Comunidad</a>
@@ -75,9 +91,10 @@
       <a href="{% url 'ranking' %}">Ranking</a>
 
       {% if user.is_authenticated and user.is_superuser %}
+        <div class="mobile-divider"></div>
         <a href="{% url 'admin_dashboard' %}">Panel Admin</a>
         <a href="{% url 'admin_usuarios' %}">Usuarios</a>
-        <a href="{% url 'admin_rutas' %}">Gestionar Rutas</a>
+        <a href="{% url 'admin_rutas' %}">Rutas</a>
         <a href="{% url 'admin_reportes' %}">Reportes</a>
         <a href="{% url 'admin_estadisticas' %}">Estadísticas</a>
       {% endif %}
@@ -98,7 +115,7 @@
 
     <!-- BUSCADOR MÓVIL -->
     <form method="get" action="{% url 'buscar_rutas' %}" class="mobile-search">
-      <input type="text" name="q" placeholder="Buscar rutas..." />
+      <input type="text" name="q" placeholder="Buscar rutas..." aria-label="Buscar rutas en móvil"/>
       <button type="submit"><i class="fas fa-search"></i></button>
     </form>
   </div>

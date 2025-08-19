@@ -1,140 +1,136 @@
-/* ============================== */
-/* VARIABLES GLOBALES             */
-/* ============================== */
-:root {
-    --color-principal: #27ae60;
-    --color-principal-hover: #218838;
-    --color-fondo: #f0f8ff;
-    --color-input-bg: rgba(241, 248, 255, 0.85);
-    --color-input-border: #ccc;
-    --color-input-focus: #28a745;
-    --color-texto: #333;
-    --color-error-text: #dc3545;
-    --color-success-bg: #d4edda;
-    --color-success-text: #155724;
-    --color-success-icon: #28a745;
-    --shadow-principal: 0 6px 20px rgba(0, 0, 0, 0.25);
-    --shadow-img: 0 4px 8px rgba(0, 0, 0, 0.1);
-    --border-radius: 6px;
-    --border-radius-lg: 15px;
-    --font-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+/* ===== PERFIL DE USUARIO (más espacioso) ===== */
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    margin-top: 20px;
-    padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: #f5f5f5;
-    color: #333;
+  background: linear-gradient(to bottom, #e8f5e9, #fdfdfd);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #2c3e50;
+  margin: 0;
+  padding: 0;
 }
 
 .perfil-container {
-    max-width: 1000px;
-    margin: 50px auto;
-    padding: 20px;
+  max-width: 1100px;
+  margin: 3rem auto;      /* más espacio arriba/abajo */
+  padding: 0 1.5rem;
 }
 
 .perfil-card {
-    background: #fff;
-    border-radius: 16px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-    padding: 30px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  padding: 3rem 2.5rem;   /* más relleno interno */
 }
 
+/* --- Cabecera perfil --- */
 .perfil-header {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 20px;
-    margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
 
 .foto-perfil img {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 3px solid #00aa4f;
-    background-color: #f0f0f0;
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #4caf50;
 }
 
 .datos-usuario h1 {
-    font-size: 28px;
-    margin-bottom: 10px;
-    color: #00aa4f;
+  margin: 0 0 0.5rem;
+  font-size: 2rem;
+  color: #2e7d32;
 }
 
 .datos-usuario p {
-    margin: 5px 0;
-    font-size: 16px;
+  margin: 0.4rem 0;
+  font-size: 1rem;
+  color: #555;
 }
 
-.seccion {
-    margin-top: 30px;
+.nivel {
+  font-weight: bold;
+  color: #388e3c;
 }
 
-.seccion h2 {
-    font-size: 22px;
-    margin-bottom: 15px;
-    color: #00753b;
-    border-left: 4px solid #00aa4f;
-    padding-left: 10px;
+/* --- Secciones generales --- */
+section {
+  margin-bottom: 3rem;   /* más espacio entre secciones */
 }
 
-.lista-rutas,
-.lista-favoritas {
-    list-style: none;
-    padding-left: 0;
-    margin: 0;
+section h2 {
+  font-size: 1.4rem;
+  color: #2e7d32;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
 }
 
+/* --- Estadísticas --- */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* más anchas */
+  gap: 1.5rem;
+}
+
+.stat {
+  background: #f9fff9;
+  border: 1px solid #dcedc8;
+  border-radius: 14px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s;
+}
+
+.stat:hover {
+  transform: translateY(-5px);
+}
+
+.stat i {
+  font-size: 1.8rem;
+  color: #43a047;
+}
+
+.stat span {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+/* --- Listas --- */
 .lista-rutas li,
-.favorita-item {
-    padding: 12px 15px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    background-color: #f9f9f9;
-    border: 1px solid #e2e2e2;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.lista-rutas li i,
-.favorita-item i {
-    color: #00aa4f;
-    margin-right: 10px;
-}
-
-.fecha {
-    font-size: 14px;
-    color: #777;
+.lista-favoritas li,
+.lista-amigos li {
+  background: #fafafa;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .vacio {
-    font-style: italic;
-    color: #999;
-    padding: 10px;
+  color: #999;
+  font-style: italic;
+  padding: 0.5rem 0;
 }
 
-.btn-quitar {
-    background: #ff4d4d;
-    color: white;
-    padding: 6px 12px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-size: 14px;
-    transition: background 0.3s ease;
-}
-
-.btn-quitar:hover {
-    background: #cc0000;
+/* --- Responsive --- */
+@media (max-width: 700px) {
+  .perfil-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  .foto-perfil img {
+    width: 110px;
+    height: 110px;
+  }
 }

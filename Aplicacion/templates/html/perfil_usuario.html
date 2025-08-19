@@ -1,60 +1,104 @@
+{% extends 'html/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Perfil de Usuario | WalkUp</title>
-    <link rel="stylesheet" href="{% static 'css/perfil.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body>
-    <div class="perfil-container">
-        <div class="perfil-card">
-            <div class="perfil-header">
-                <div class="foto-perfil">
-                    <img src="{{ usuario.profile.foto.url|default_if_none:'/static/img/default-user.png' }}" alt="Foto de perfil">
-                </div>
-                <div class="datos-usuario">
-                    <h1><i class="fas fa-user-circle"></i> {{ usuario.username }}</h1>
-                    <p><i class="fas fa-route"></i> <strong>Total de kilómetros recorridos:</strong> {{ total_km }} km</p>
-                    <p><i class="fas fa-clock"></i> <strong>Total de horas de caminata:</strong> {{ total_horas }} h</p>
-                </div>
-            </div>
 
-            <div class="seccion">
-                <h2><i class="fas fa-shoe-prints"></i> Rutas Recorridas</h2>
-                <ul class="lista-rutas">
-                    {% for ruta in rutas_recorridas %}
-                        <li>
-                            <i class="fas fa-map-marked-alt"></i>
-                            <strong>{{ ruta.ruta.nombre_ruta }}</strong> – {{ ruta.ruta.longitud }} km – {{ ruta.ruta.duracion_estimada }}
-                            <span class="fecha">({{ ruta.fecha|date:"d/m/Y" }})</span>
-                        </li>
-                    {% empty %}
-                        <li class="vacio">No has recorrido rutas aún.</li>
-                    {% endfor %}
-                </ul>
-            </div>
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/perfil.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+{% endblock %}
 
-            <div class="seccion">
-                <h2><i class="fas fa-heart"></i> Mis Rutas Favoritas</h2>
-                {% if rutas_favoritas %}
-                    <ul class="lista-favoritas">
-                        {% for ruta in rutas_favoritas %}
-                            <li class="favorita-item">
-                                <i class="fas fa-mountain"></i> 
-                                <strong>{{ ruta.nombre_ruta }}</strong> – {{ ruta.ubicacion }}
-                                <a href="{% url 'quitar_favorita' ruta.id %}" class="btn-quitar">
-                                    <i class="fas fa-times-circle"></i> Quitar
-                                </a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                {% else %}
-                    <p class="vacio">No has marcado rutas como favoritas todavía.</p>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-</body>
-</html>
+{% block content %}
+<main class="perfil-container">
+  <article class="perfil-card">
+
+    <!-- CABECERA PERFIL -->
+    <header class="perfil-header">
+      <figure class="foto-perfil">
+        <img src="{{ usuario.profile.foto.url|default_if_none:'/static/img/default-user.png' }}" 
+             alt="Foto de perfil de {{ usuario.username }}">
+      </figure>
+      <div class="datos-usuario">
+        <h1>{{ usuario.username }}</h1>
+        <p class="nivel"><i class="fas fa-medal"></i> Nivel {{ usuario.profile.nivel|default:"1" }}</p>
+        <p><i class="fas fa-map-marked"></i> Ubicación: {{ usuario.profile.ciudad|default:"No especificada" }}</p>
+        <p><i class="fas fa-calendar-alt"></i> Miembro desde {{ usuario.date_joined|date:"d/m/Y" }}</p>
+      </div>
+    </header>
+
+    <!-- ESTADÍSTICAS GENERALES -->
+    <section class="estadisticas">
+      <h2><i class="fas fa-chart-line"></i> Mis Estadísticas</h2>
+      <div class="stats-grid">
+        <div class="stat"><i class="fas fa-route"></i><span>{{ total_km }}</span><p>Kilómetros</p></div>
+        <div class="stat"><i class="fas fa-clock"></i><span>{{ total_horas }}</span><p>Horas</p></div>
+        <div class="stat"><i class="fas fa-mountain"></i><span>{{ total_rutas }}</span><p>Rutas completadas</p></div>
+        <div class="stat"><i class="fas fa-fire"></i><span>{{ calorias_quemadas }}</span><p>Calorías</p></div>
+      </div>
+    </section>
+
+    <!-- LOGROS / BADGES -->
+    <section class="logros">
+      <h2><i class="fas fa-trophy"></i> Mis Logros</h2>
+      <ul class="badges">
+        {% for logro in logros %}
+          <li class="badge"><i class="fas fa-award"></i><span>{{ logro.nombre }}</span></li>
+        {% empty %}
+          <li class="vacio">Todavía no tienes logros, ¡empieza a caminar! 🚶‍♂️</li>
+        {% endfor %}
+      </ul>
+    </section>
+
+    <!-- HISTORIAL DE RUTAS -->
+    <section class="seccion">
+      <h2><i class="fas fa-shoe-prints"></i> Rutas Recorridas</h2>
+      <ul class="lista-rutas">
+        {% for ruta in rutas_recorridas %}
+          <li>
+            <i class="fas fa-map-marker-alt"></i>
+            <strong>{{ ruta.ruta.nombre_ruta }}</strong> – {{ ruta.ruta.longitud }} km – {{ ruta.ruta.duracion_estimada }}
+            <time class="fecha" datetime="{{ ruta.fecha|date:'Y-m-d' }}">({{ ruta.fecha|date:"d/m/Y" }})</time>
+          </li>
+        {% empty %}
+          <li class="vacio">Aún no has recorrido ninguna ruta.</li>
+        {% endfor %}
+      </ul>
+    </section>
+
+    <!-- FAVORITOS -->
+    <section class="seccion">
+      <h2><i class="fas fa-heart"></i> Mis Rutas Favoritas</h2>
+      {% if rutas_favoritas %}
+        <ul class="lista-favoritas">
+          {% for ruta in rutas_favoritas %}
+            <li class="favorita-item">
+              <i class="fas fa-mountain"></i>
+              <strong>{{ ruta.nombre_ruta }}</strong> – {{ ruta.ubicacion }}
+              <a href="{% url 'quitar_favorita' ruta.id %}" class="btn-quitar" title="Quitar de favoritos">
+                <i class="fas fa-times-circle"></i>
+                <span class="sr-only">Quitar</span>
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="vacio">No tienes rutas favoritas todavía.</p>
+      {% endif %}
+    </section>
+
+    <!-- AMIGOS / COMUNIDAD -->
+    <section class="amigos">
+      <h2><i class="fas fa-users"></i> Mis Amigos</h2>
+      <ul class="lista-amigos">
+        {% for amigo in amigos %}
+          <li>
+            <img src="{{ amigo.profile.foto.url|default_if_none:'/static/img/default-user.png' }}" alt="Foto de {{ amigo.username }}">
+            <span>{{ amigo.username }}</span>
+          </li>
+        {% empty %}
+          <li class="vacio">No has agregado amigos todavía.</li>
+        {% endfor %}
+      </ul>
+    </section>
+
+  </article>
+</main>
+{% endblock %}

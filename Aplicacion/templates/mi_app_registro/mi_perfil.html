@@ -3,48 +3,55 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil - Walk App</title>
-    <link rel="stylesheet" href="{% static 'css/login/perfil.css' %}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil - Walk App</title>
+  <link rel="stylesheet" href="{% static 'css/login/perfil.css' %}">
 </head>
 <body>
-    <div class="container">
-        <aside class="sidebar" role="complementary">
-            <section class="profile-card">
-                <header>
-                    <img src="{% static '/images/iconos/avatar.avif' %}" alt="Foto de perfil de Kevin Chicaiza" class="avatar">
-                    <h2>Kevin Chicaiza</h2>
-                    <p>Popayán, Cauca, Colombia</p>
-                    <p class="member-since">Miembro desde Febrero 2025</p>
-                </header>
-                <div class="profile-followers">
-                    <span><strong>0</strong> Seguidores</span>
-                    <span><strong>0</strong> Siguiendo</span>
-                </div>
-                <nav class="profile-links">
-                    <a href="#">📊 Estadísticas</a>
-                    <a href="#">📋 Listas</a>
-                </nav>
-            </section>
-        </aside>
+  <div class="container">
 
-        <main class="main-content">
-            <nav class="tabs" role="navigation">
-                <a href="#" class="active">Feed</a>
-                <a href="#">Fotos</a>
-                <a href="#">Reseñas</a>
-                <a href="#">Actividades</a>
-                <a href="#">Completado</a>
-            </nav>
+    <!-- === SIDEBAR PERFIL === -->
+    <aside class="sidebar" aria-label="Perfil de usuario">
+      <section class="profile-card">
+        <header class="profile-header">
+          <img src="{% static 'images/iconos/avatar.avif' %}" alt="Foto de perfil de Kevin Chicaiza" class="avatar">
+          <h2 class="profile-name">Kevin Chicaiza</h2>
+          <p class="profile-location">📍 Popayán, Cauca, Colombia</p>
+          <time class="member-since" datetime="2025-02">Miembro desde Febrero 2025</time>
+        </header>
 
-            <section class="no-posts" aria-label="Sin publicaciones">
-                <img src="{% static '/images/fotos/avatar1.png' %}" alt="Icono de oso explorador" class="bear-icon">
-                <h3>Aún no hay publicaciones</h3>
-                <p>Inspira a tus amigos con reseñas, listas y aventuras.</p>
-                <a href="#" class="btn-explore" role="button">Explorar Rutas</a>
-            </section>
-        </main>
-    </div>
+        <div class="profile-stats">
+          <span><strong>0</strong> Seguidores</span>
+          <span><strong>0</strong> Siguiendo</span>
+        </div>
+
+        <nav class="profile-nav" aria-label="Enlaces del perfil">
+          <a href="#">📊 Estadísticas</a>
+          <a href="#">📋 Listas</a>
+        </nav>
+      </section>
+    </aside>
+
+    <!-- === CONTENIDO PRINCIPAL === -->
+    <main class="main-content">
+      <!-- Tabs -->
+      <nav class="tabs" role="tablist" aria-label="Opciones de perfil">
+        <a href="#" class="active" role="tab" aria-selected="true">Feed</a>
+        <a href="#" role="tab">Fotos</a>
+        <a href="#" role="tab">Reseñas</a>
+        <a href="#" role="tab">Actividades</a>
+        <a href="#" role="tab">Completado</a>
+      </nav>
+
+      <!-- Mensaje sin publicaciones -->
+      <section class="no-posts" aria-label="Sin publicaciones">
+        <img src="{% static 'images/fotos/avatar1.png' %}" alt="Icono de oso explorador" class="bear-icon">
+        <h3>Aún no hay publicaciones</h3>
+        <p>Inspira a tus amigos con reseñas, listas y aventuras.</p>
+        <a href="#" class="btn-explore">Explorar Rutas</a>
+      </section>
+    </main>
+  </div>
 </body>
 </html>

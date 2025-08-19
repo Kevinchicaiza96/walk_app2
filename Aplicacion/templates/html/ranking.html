@@ -24,56 +24,49 @@
 
   <!-- === ESTADÍSTICAS INTERACTIVAS === -->
   <section class="stats-section animate__animated animate__fadeInUp" aria-label="Estadísticas Personales">
-    <h2 class="section-title">📈 Estadísticas Interactivas</h2>
+  <h2 class="section-title">📈 Estadísticas Interactivas</h2>
 
-    <div class="stats-grid">
+  <div class="stats-grid">
 
-      <div class="stat-card interactive active-card" onclick="updateChart('Octubre', this)" role="button" aria-pressed="true">
-        <div class="footprint-deco" aria-hidden="true">
-          <i class="fas fa-shoe-prints"></i>
-        </div>
-        <h3>📅 Octubre</h3>
-        <p><strong>Puntos:</strong> 75</p>
-        <p><strong>Distancia:</strong> 15 km</p>
-        <p><strong>Días activos:</strong> 50</p>
-      </div>
-
-      <div class="stat-card interactive" onclick="updateChart('Septiembre', this)" role="button" aria-pressed="false">
-        <div class="footprint-deco" aria-hidden="true">
-          <i class="fas fa-shoe-prints"></i>
-        </div>
-        <h3>📅 Septiembre</h3>
-        <p><strong>Puntos:</strong> 300</p>
-        <p><strong>Distancia:</strong> 60 km</p>
-        <p><strong>Días activos:</strong> 22</p>
-      </div>
-
-      <div class="stat-card interactive" onclick="updateChart('Agosto', this)" role="button" aria-pressed="false">
-        <div class="footprint-deco" aria-hidden="true">
-          <i class="fas fa-shoe-prints"></i>
-        </div>
-        <h3>📅 Agosto</h3>
-        <p><strong>Puntos:</strong> 125</p>
-        <p><strong>Distancia:</strong> 25 km</p>
-        <p><strong>Días activos:</strong> 9</p>
-      </div>
-
-      <div class="stat-card interactive" onclick="updateChart('Julio', this)" role="button" aria-pressed="false">
-        <div class="footprint-deco" aria-hidden="true">
-          <i class="fas fa-shoe-prints"></i>
-        </div>
-        <h3>📅 Julio</h3>
-        <p><strong>Puntos:</strong> 200</p>
-        <p><strong>Distancia:</strong> 40 km</p>
-        <p><strong>Días activos:</strong> 14</p>
-      </div>
-
+    <div class="stat-card interactive active-card" style="background-image: url('{% static 'images/imagenes/Panoramica.webp' %}');" onclick="updateChart('Octubre', this)" role="button" aria-pressed="true">
+      <div class="overlay"></div>
+      <h3>📅 Octubre</h3>
+      <p><strong>Puntos:</strong> 75</p>
+      <p><strong>Distancia:</strong> 15 km</p>
+      <p><strong>Días activos:</strong> 50</p>
     </div>
 
-    <div class="chart-container">
-      <canvas id="statsChart"></canvas>
+    <div class="stat-card interactive" style="background-image: url('{% static 'images/imagenes/purace.webp' %}');" onclick="updateChart('Septiembre', this)" role="button" aria-pressed="false">
+      <div class="overlay"></div>
+      <h3>📅 Septiembre</h3>
+      <p><strong>Puntos:</strong> 300</p>
+      <p><strong>Distancia:</strong> 60 km</p>
+      <p><strong>Días activos:</strong> 22</p>
     </div>
-  </section>
+
+    <div class="stat-card interactive" style="background-image: url('{% static 'images/imagenes/puente.jpg' %}');" onclick="updateChart('Agosto', this)" role="button" aria-pressed="false">
+      <div class="overlay"></div>
+      <h3>📅 Agosto</h3>
+      <p><strong>Puntos:</strong> 125</p>
+      <p><strong>Distancia:</strong> 25 km</p>
+      <p><strong>Días activos:</strong> 9</p>
+    </div>
+
+    <div class="stat-card interactive" style="background-image: url('{% static 'images/imagenes/atardecer.jpg' %}');" onclick="updateChart('Julio', this)" role="button" aria-pressed="false">
+      <div class="overlay"></div>
+      <h3>📅 Julio</h3>
+      <p><strong>Puntos:</strong> 200</p>
+      <p><strong>Distancia:</strong> 40 km</p>
+      <p><strong>Días activos:</strong> 14</p>
+    </div>
+
+  </div>
+
+  <div class="chart-container">
+    <canvas id="statsChart"></canvas>
+  </div>
+</section>
+
 
   <!-- === CAMINATAS RECIENTES === -->
   <section class="recent-hikes-section animate__animated animate__fadeInUp" style="animation-delay: 0.4s;" aria-label="Caminatas Recientes">
